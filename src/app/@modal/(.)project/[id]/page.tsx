@@ -12,7 +12,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <Root>
       <ProjectModal>
-        <div className="flex sticky top-0 left-0 py-[1rem] px-[2rem] gap-[1rem]">
+        <div className="flex sticky top-0 left-0 py-[1rem] px-[2rem] gap-[1rem] bg-white">
           <ProjectHeader project={project} />
           <CloseButton className="flex justify-center items-center text-black text-[1.5rem] xs:text-[2rem]">
             <IoClose />
