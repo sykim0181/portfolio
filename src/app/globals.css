@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 @theme {
   --breakpoint-xs: 30rem;
@@ -17,7 +16,7 @@ body {
   --skeleton-color: rgba(206, 206, 206, 0.5);
   --bg-color: #eaeaea;
 
-  margin: 0;  
+  margin: 0;
 }
 
 h1,
@@ -33,6 +32,10 @@ p {
 a {
   cursor: pointer;
   text-decoration: none;
+}
+
+button {
+  cursor: pointer;
 }
 
 li {
