@@ -1,7 +1,8 @@
+import { cn } from "@/utils";
 import { useInView } from "motion/react";
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
-import React, { memo, useState } from "react";
+import React, { memo, useMemo, useState } from "react";
 
 type TSection = {
   name: string;
@@ -25,31 +26,31 @@ const Navigation = (props: NavigationProps) => {
   const sectionsInView = sections.map(({ ref }) =>
     useInView(ref, { amount: "some" })
   );
-
-  const sectionIdxInView = sectionsInView.findLastIndex((value) => value);
-  console.log("sectionIdxInView:", sectionIdxInView);
+  const sectionIdxInView = useMemo(
+    () => sectionsInView.findLastIndex((value) => value),
+    [sectionsInView]
+  );
 
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav
-      className={`fixed top-[5rem] right-[5%] z-50`}
-      onMouseOver={() => setIsOpen(true)}
-      onMouseOut={() => setIsOpen(false)}
-    >
-      <ul className="flex flex-col items-end gap-[0.5rem]">
+    <nav className={`fixed top-[5rem] right-[5%] z-50`}>
+      <ul className="flex flex-col items-end">
         {sections.map(({ name, id }, idx) => {
           const isInView = idx === sectionIdxInView;
           const show = isInView ? true : isOpen ? true : false;
 
           return (
             <li
-              className={`relative flex gap-[1rem] items-center ${
+              className={cn([
+                "relative flex gap-[1rem] items-center py-[0.25rem] hover:before:w-1 hover:before:h-1 hover:before:bg-(--primary-color)",
                 show
                   ? "visible pointer-events-auto"
-                  : "invisible pointer-events-none"
-              } hover:before:w-1 hover:before:h-1 hover:before:bg-(--primary-color)`}
+                  : "invisible pointer-events-none",
+              ])}
               key={`nav-${id}`}
+              onMouseOver={() => setIsOpen(true)}
+              onMouseOut={() => setIsOpen(false)}
             >
               <p className="absolute -right-[1rem] -top-[0.5rem] text-[0.6rem]">{`0${
                 idx + 1
