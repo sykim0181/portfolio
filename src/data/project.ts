@@ -4,6 +4,11 @@ export const projectData: {
   imgSrc: string;
 }[] = [
   {
+    id: 8,
+    name: "Retro-Board",
+    imgSrc: "/projects/retro-board.png",
+  },
+  {
     id: 7,
     name: "포트폴리오",
     imgSrc: "/projects/my-portfolio.png",
