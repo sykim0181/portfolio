@@ -2,6 +2,7 @@ import { Description, Project } from "@/types/common";
 import DescriptionParagraph from "../common/DescriptionParagraph";
 import ProjectImage from "./ProjectImage";
 import { convertPeriodToString } from "@/utils/convertPeriodToString";
+import { textToJSXWithBreaks } from "@/utils/textToJSXWithBreaks";
 
 interface ProjectContentProps {
   project: Project;
@@ -21,7 +22,9 @@ const ProjectContent = (props: ProjectContentProps) => {
           <p>
             {convertPeriodToString(project.period_start, project.period_end)}
           </p>
-          <p>{project.additional_short_description}</p>
+          {project.additional_short_description && (
+            <p>{textToJSXWithBreaks(project.additional_short_description)}</p>
+          )}
         </div>
       </div>
 
@@ -37,7 +40,7 @@ const ProjectContent = (props: ProjectContentProps) => {
       </div>
 
       <div className="flex flex-col gap-[1rem]">
-        <h2>상세 설명</h2>
+        <h2 className="text-[1.5rem] font-bold">🧩 상세 설명</h2>
         <div className="flex flex-col gap-[1rem]">
           {project.detail_description.map((des, idx) => (
             <DescriptionParagraph
@@ -50,7 +53,7 @@ const ProjectContent = (props: ProjectContentProps) => {
 
       {project.trouble_shooting && (
         <div className="flex flex-col gap-[1rem]">
-          <h2>트러블 슈팅</h2>
+          <h2 className="text-[1.5rem] font-bold">🛠️ 트러블 슈팅</h2>
           <div className="flex flex-col gap-[1rem]">
             {project.trouble_shooting.map((des, idx) => (
               <DescriptionParagraph
@@ -64,7 +67,7 @@ const ProjectContent = (props: ProjectContentProps) => {
 
       {project.what_i_learn && (
         <div className="flex flex-col gap-[1rem]">
-          <h2>배운점</h2>
+          <h2 className="text-[1.5rem] font-bold">🌱 배운점</h2>
           <div className="flex flex-col gap-[1rem]">
             {project.what_i_learn.map((des, idx) => {
               const description: Description = {
