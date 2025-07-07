@@ -1,4 +1,4 @@
-import { cn } from "@/utils";
+import { cn } from "@/utils/cn";
 import { useAnimate, useInView } from "motion/react";
 import { Montserrat } from "next/font/google";
 import Link from "next/link";

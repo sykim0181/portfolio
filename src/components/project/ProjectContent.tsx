@@ -1,7 +1,7 @@
 import { Description, Project } from "@/types/common";
-import { convertToPeriodStr } from "@/utils";
 import DescriptionParagraph from "../common/DescriptionParagraph";
 import ProjectImage from "./ProjectImage";
+import { convertPeriodToString } from "@/utils/convertPeriodToString";
 
 interface ProjectContentProps {
   project: Project;
@@ -18,7 +18,9 @@ const ProjectContent = (props: ProjectContentProps) => {
           <p className="text-[1rem] md:text-[1.2rem]">
             {project.short_description}
           </p>
-          <p>{convertToPeriodStr(project.period_start, project.period_end)}</p>
+          <p>
+            {convertPeriodToString(project.period_start, project.period_end)}
+          </p>
           <p>{project.additional_short_description}</p>
         </div>
       </div>

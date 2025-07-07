@@ -7,7 +7,7 @@ import {
   cursorTypeAtom,
 } from "@/atoms/cursorAtom";
 import { Position } from "@/types/common";
-import { checkIsMobile } from "@/utils";
+import { checkIsMobile } from "@/utils/checkIsMobile";
 
 const delay = 100;
 
