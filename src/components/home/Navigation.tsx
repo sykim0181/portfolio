@@ -1,8 +1,8 @@
 import { cn } from "@/utils";
-import { useInView } from "motion/react";
+import { useAnimate, useInView } from "motion/react";
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
-import React, { memo, useMemo, useState } from "react";
+import React, { memo, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 type TSection = {
   name: string;
@@ -26,22 +26,36 @@ const Navigation = (props: NavigationProps) => {
   const sectionsInView = sections.map(({ ref }) =>
     useInView(ref, { amount: "some" })
   );
-  const sectionIdxInView = useMemo(
+  const activeSectionIdx = useMemo(
     () => sectionsInView.findLastIndex((value) => value),
     [sectionsInView]
   );
 
+  const navRefs = sections.map(() => useRef<HTMLLIElement | null>(null));
+
   const [isOpen, setIsOpen] = useState(false);
+  const [scope, animate] = useAnimate();
+
+  useLayoutEffect(() => {
+    if (isOpen) {
+      animate(scope.current, { y: 0 });
+    } else {
+      const activeNav = navRefs[activeSectionIdx];
+      const activeNavOffset = activeNav?.current?.offsetTop ?? 0;
+      animate(scope.current, { y: -activeNavOffset });
+    }
+  }, [activeSectionIdx, isOpen, navRefs]);
 
   return (
     <nav className={`fixed top-[5rem] right-[5%] z-50`}>
-      <ul className="flex flex-col items-end">
+      <ul ref={scope} className="flex flex-col items-end">
         {sections.map(({ name, id }, idx) => {
-          const isInView = idx === sectionIdxInView;
+          const isInView = idx === activeSectionIdx;
           const show = isInView ? true : isOpen ? true : false;
 
           return (
             <li
+              ref={navRefs[idx]}
               className={cn([
                 "relative flex gap-[1rem] items-center py-[0.25rem] hover:before:w-1 hover:before:h-1 hover:before:bg-(--primary-color)",
                 show
