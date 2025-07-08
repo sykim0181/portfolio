@@ -31,6 +31,11 @@ export const Root = (props: ModalProps) => {
 
   useEffect(() => {
     setTimeout(() => setIsOpen(true), 300);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, []);
 
   return createPortal(
