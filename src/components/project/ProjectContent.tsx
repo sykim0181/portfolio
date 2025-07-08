@@ -2,7 +2,7 @@ import { Description, Project } from "@/types/common";
 import DescriptionParagraph from "../common/DescriptionParagraph";
 import ProjectImage from "./ProjectImage";
 import { convertPeriodToString } from "@/utils/convertPeriodToString";
-import { textToJSXWithBreaks } from "@/utils/textToJSXWithBreaks";
+import MarkDownContainer from "../common/MarkDownContainer";
 
 interface ProjectContentProps {
   project: Project;
@@ -23,7 +23,7 @@ const ProjectContent = (props: ProjectContentProps) => {
             {convertPeriodToString(project.period_start, project.period_end)}
           </p>
           {project.additional_short_description && (
-            <p>{textToJSXWithBreaks(project.additional_short_description)}</p>
+            <MarkDownContainer text={project.additional_short_description} />
           )}
         </div>
       </div>
