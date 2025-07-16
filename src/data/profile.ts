@@ -39,11 +39,11 @@ export const profileData: TData[] = [
         title: "정보처리기사",
         description: [],
       },
-      {
-        period: "2024.01",
-        title: "영어 TOEIC",
-        description: ["975"],
-      },
+      // {
+      //   period: "2024.01",
+      //   title: "영어 TOEIC",
+      //   description: ["975"],
+      // },
     ],
   },
 ];
