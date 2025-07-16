@@ -4,6 +4,11 @@ export const projectData: {
   imgSrc: string;
 }[] = [
   {
+    id: 9,
+    name: "BIZKET",
+    imgSrc: "/projects/bizket.png"
+  },
+  {
     id: 8,
     name: "Retro-Board",
     imgSrc: "/projects/retro-board.png",
@@ -30,7 +35,7 @@ export const projectData: {
   },
   {
     id: 2,
-    name: "XSO - e-commerce",
+    name: "이커머스 플랫폼",
     imgSrc: "/projects/xso.webp",
   },
   {
