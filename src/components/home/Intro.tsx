@@ -14,7 +14,7 @@ const Intro = () => {
           <p className="text-center">
             끈기와 성실함을 무기로, 주어진 문제를 집요하게 해결합니다.
             <br />
-            사소한 아이디어라도 기술로 만들어내며, 매일 한 걸음씩 성장합니다.{" "}
+            사소한 아이디어라도 직접 만들어보고, 매일 한 걸음씩 성장합니다.
           </p>
         </div>
         <div className="mx-auto w-fit rounded-full bg-black text-white p-[0.5rem] flex justify-center items-center">
