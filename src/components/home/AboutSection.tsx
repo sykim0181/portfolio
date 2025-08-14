@@ -17,8 +17,8 @@ const AboutSection = ({ ref }: AboutSectionProps) => {
         About
       </h2>
       <div className="w-(--default-width) max-w-(--max-width) my-0 mx-auto flex flex-col gap-[6rem]">
-        <AboutMe />
-        <Skill />
+        {/* <AboutMe /> */}
+        {/* <Skill /> */}
         <Profile />
       </div>
     </section>
