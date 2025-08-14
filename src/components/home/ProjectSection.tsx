@@ -70,7 +70,8 @@ const ProjectNav = (props: ProjectNavProps) => {
     <div
       className={cn(
         "border-1 rounded-[10px] px-[0.8rem] py-[0.3rem] cursor-pointer",
-        isSelected && "bg-black text-white"
+        isSelected && "bg-black text-white",
+        "hover:bg-black hover:text-white"
       )}
       {...otherProps}
     >
