@@ -2,8 +2,15 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
+import { cn } from "@/utils/cn";
 
-const Memoticon = () => {
+interface MemoticonProps {
+  className?: string;
+}
+
+const Memoticon = (props: MemoticonProps) => {
+  const { className } = props;
+
   const [isHover, setIsHover] = useState(false);
 
   const onMouseEnter = () => setIsHover(true);
@@ -15,13 +22,13 @@ const Memoticon = () => {
 
   return (
     <div
-      className="aspect-square w-6/10 xs:w-[220px] sm:w-[250px] md:w-[280px] lg:w-[300px] xs:my-0 xs:mx-auto"
+      className={cn("aspect-square", className)}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <motion.img 
-        src={src} 
-        className="w-full h-full object-contain" 
+      <motion.img
+        src={src}
+        className="w-full h-full object-contain"
         whileHover={{ scale: 1.1 }}
       />
     </div>

@@ -10,7 +10,7 @@ const AboutMe = () => {
       className="flex flex-col lg:flex-row items-center lg:justify-between"
       {...appearMotionProps}
     >
-      <Memoticon />
+      <Memoticon className="w-6/10 xs:w-[220px] sm:w-[250px] md:w-[280px] lg:w-[300px] xs:my-0 xs:mx-auto" />
 
       <div className="flex flex-col gap-[1.5rem] mt-[2rem] md:justify-center">
         <div>
