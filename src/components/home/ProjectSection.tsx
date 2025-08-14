@@ -37,6 +37,7 @@ const ProjectSection = ({ ref }: ProjectSectionProps) => {
         <div className="flex gap-[1rem] w-full">
           {projectTypes.map((type) => (
             <ProjectNav
+              key={`project-type-${type}`}
               isSelected={type === selectedType}
               onClick={() => onClickNav(type)}
             >
