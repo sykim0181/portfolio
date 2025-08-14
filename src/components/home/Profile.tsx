@@ -24,7 +24,7 @@ const Profile = () => {
             >
               {sec.category}
             </h4>
-            <div className="">
+            <div className="mt-[1rem] flex flex-col gap-[1rem]">
               {sec.items.map((item, idx) => (
                 <div key={`profile-data-${idx}`}>
                   <div className="flex flex-col xs:grid xs:grid-cols-[1fr_2fr]">
