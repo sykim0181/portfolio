@@ -1,17 +1,24 @@
 import { useAtom, useAtomValue } from "jotai";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { cursorTextAtom, cursorTypeAtom } from "@/atoms/cursorAtom";
 import { Position } from "@/types/common";
 import { checkIsMobile } from "@/utils/checkIsMobile";
+import { useAnimationFrame, useMotionValue, useSpring } from "motion/react";
 
 type Size = { w: number; h: number };
 
 const useCursor = () => {
-  const [position, setPosition] = useState<Position | null>(null);
   const [type, setType] = useAtom(cursorTypeAtom);
   const text = useAtomValue(cursorTextAtom);
+  
   const cursorElementRef = useRef<HTMLDivElement>(null); // cursor element
   const sizeRef = useRef<Size>({ w: 0, h: 0 });
+  const positionRef = useRef<Position>({ x: 0, y: 0 });
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x);
+  const sy = useSpring(y);
 
   const measure = () => {
     const rect = cursorElementRef.current?.getBoundingClientRect();
@@ -31,10 +38,10 @@ const useCursor = () => {
       setType((type) => (type === "none" ? "default" : type));
 
       const { w, h } = sizeRef.current;
-      setPosition({
+      positionRef.current = {
         x: e.clientX - w / 2,
         y: e.clientY - h / 2,
-      });
+      };
     };
 
     window.addEventListener("mousemove", eventHandler);
@@ -42,12 +49,17 @@ const useCursor = () => {
     return () => {
       window.removeEventListener("mousemove", eventHandler);
     };
-  }, [setType, setPosition]);
+  }, [setType]);
+
+  useAnimationFrame(() => {
+    x.set(positionRef.current.x);
+    y.set(positionRef.current.y);
+  });
 
   return {
     ref: cursorElementRef,
-    x: position?.x,
-    y: position?.y,
+    x: sx,
+    y: sy,
     type,
     text,
   };

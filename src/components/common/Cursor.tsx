@@ -35,8 +35,6 @@ const Cursor = () => {
   const variants: Variants = {
     none: {
       opacity: 0,
-      x,
-      y,
     },
     default: {
       opacity: 0.5,
@@ -44,8 +42,6 @@ const Cursor = () => {
       transition: {
         borderRadius: { ease: [0, 20, 60, 100] },
       },
-      x,
-      y,
     },
     project: {
       opacity: 1,
@@ -56,8 +52,6 @@ const Cursor = () => {
       transition: {
         borderRadius: { ease: [0, 20, 60, 100] },
       },
-      x,
-      y,
     },
   };
 
@@ -71,7 +65,7 @@ const Cursor = () => {
         className="bg-(--primary-color) box-border pointer-events-none"
         variants={variants}
         animate={variant}
-        style={style}
+        style={{ x, y, ...style }}
       >
         {text}
       </motion.div>
