@@ -3,7 +3,7 @@ export type TSkill = {
   src: string;
 };
 
-export const skillData: TSkill[] = [
+export const SKILL_DATA: TSkill[] = [
   {
     name: "React",
     src: "/skills/react.svg",
