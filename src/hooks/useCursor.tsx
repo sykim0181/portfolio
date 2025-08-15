@@ -1,47 +1,14 @@
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { useEffect, useRef, useState } from "react";
-import {
-  cursorPositionAtom,
-  cursorTextAtom,
-  CursorType,
-  cursorTypeAtom,
-} from "@/atoms/cursorAtom";
+import { cursorTextAtom, cursorTypeAtom } from "@/atoms/cursorAtom";
 import { Position } from "@/types/common";
 import { checkIsMobile } from "@/utils/checkIsMobile";
 
-const delay = 100;
-
-type TCursor = {
-  type: CursorType;
-  position: Position | null;
-  text: string;
-};
-
 const useCursor = () => {
-  const [type, setType] = useState<CursorType>("none");
-  const [text, setText] = useState<string>("");
   const [position, setPosition] = useState<Position | null>(null);
-
-  const [cursorPosition, setCursorPosition] = useAtom(cursorPositionAtom);
-  const [cursorType, setCursorType] = useAtom(cursorTypeAtom);
-  const [cursorText, setCursorText] = useAtom(cursorTextAtom);
-  const ref = useRef<HTMLDivElement>(null); // cursor element
-
-  const cursor = useRef<TCursor>({
-    type,
-    text,
-    position,
-  });
-
-  const throttle = useRef<boolean>(false);
-
-  useEffect(() => {
-    cursor.current = {
-      type,
-      text,
-      position,
-    };
-  }, [type, text, position]);
+  const [type, setType] = useAtom(cursorTypeAtom);
+  const text = useAtomValue(cursorTextAtom);
+  const cursorElementRef = useRef<HTMLDivElement>(null); // cursor element
 
   useEffect(() => {
     const eventHandler = (e: MouseEvent) => {
@@ -49,20 +16,16 @@ const useCursor = () => {
         return;
       }
 
-      if (throttle.current) {
-        return;
-      }
+      setType((type) => (type === "none" ? "default" : type));
 
-      throttle.current = true;
-      setTimeout(() => {
-        const width = ref.current?.getBoundingClientRect().width ?? 0;
-        const height = ref.current?.getBoundingClientRect().height ?? 0;
-        setCursorPosition({
-          x: e.clientX - width / 2,
-          y: e.clientY - height / 2,
-        });
-        throttle.current = false;
-      }, 100);
+      const width =
+        cursorElementRef.current?.getBoundingClientRect().width ?? 0;
+      const height =
+        cursorElementRef.current?.getBoundingClientRect().height ?? 0;
+      setPosition({
+        x: e.clientX - width / 2,
+        y: e.clientY - height / 2,
+      });
     };
 
     window.addEventListener("mousemove", eventHandler);
@@ -70,20 +33,12 @@ const useCursor = () => {
     return () => {
       window.removeEventListener("mousemove", eventHandler);
     };
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setType(cursorType);
-      setText(cursorText);
-      setPosition(cursorPosition);
-    }, delay);
-  }, [cursorType, cursorText, cursorPosition]);
+  }, [setType, setPosition]);
 
   return {
-    ref,
-    x: cursorPosition?.x,
-    y: cursorPosition?.y,
+    ref: cursorElementRef,
+    x: position?.x,
+    y: position?.y,
     type,
     text,
   };
