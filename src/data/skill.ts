@@ -68,16 +68,4 @@ export const SKILL_DATA: TSkill[] = [
     name: "SQL",
     src: "/skills/sql.svg",
   },
-  {
-    name: "git",
-    src: "/skills/git.svg",
-  },
-  {
-    name: "supabase",
-    src: "/skills/supabase.png",
-  },
-  {
-    name: "Firebase",
-    src: "/skills/firebase.svg",
-  },
 ];
