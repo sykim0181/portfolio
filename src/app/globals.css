@@ -11,10 +11,10 @@ html {
 body {
   --default-width: 80%;
   --max-width: 1024px;
-  --primary-color: #5e63d4;
+  --primary-color: #F9CDCE;
   --secondary-color: #f68eab;
   --skeleton-color: rgba(206, 206, 206, 0.5);
-  --bg-color: #eaeaea;
+  --bg-color: #292826;
 
   margin: 0;
 }

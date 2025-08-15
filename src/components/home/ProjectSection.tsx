@@ -67,12 +67,13 @@ interface ProjectNavProps extends ComponentProps<"div"> {
 
 const ProjectNav = (props: ProjectNavProps) => {
   const { isSelected, children, ...otherProps } = props;
+
   return (
     <div
       className={cn(
         "border-1 rounded-[10px] px-[0.8rem] py-[0.3rem] cursor-pointer",
-        isSelected && "bg-black text-white",
-        "hover:bg-black hover:text-white"
+        isSelected ? "bg-white text-black" : "border-white text-white",
+        "hover:bg-white hover:text-black"
       )}
       {...otherProps}
     >

@@ -66,13 +66,13 @@ const Navigation = (props: NavigationProps) => {
               onMouseOver={() => setIsOpen(true)}
               onMouseOut={() => setIsOpen(false)}
             >
-              <p className="absolute -right-[1rem] -top-[0.5rem] text-[0.6rem]">{`0${
+              <p className="absolute -right-[1rem] -top-[0.5rem] text-[0.6rem] text-gray-500">{`0${
                 idx + 1
               }`}</p>
               <Link
                 href={`/#${id}`}
                 className={`text-[1.2rem] ${
-                  isInView === true ? "text-(--primary-color)" : "text-black"
+                  isInView === true ? "text-(--primary-color)" : "text-gray-500"
                 } ${montserrat_italic.className}`}
               >
                 {name}

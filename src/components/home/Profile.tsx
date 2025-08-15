@@ -43,7 +43,7 @@ const ProfileSection = (props: ProfileSectionProps) => {
   const { sectionName, items } = props;
 
   return (
-    <section key={`profile-${sectionName}`}>
+    <section key={`profile-${sectionName}`} className="text-white">
       <h4
         className={`w-full text-[1.2rem] font-bold ${montserrat_italic.className}`}
       >
@@ -57,7 +57,7 @@ const ProfileSection = (props: ProfileSectionProps) => {
               <div>
                 <p className="font-bold">{item.title}</p>
                 {item.description.length > 0 && (
-                  <div className="text-gray-500">
+                  <div className="text-gray-400 ">
                     {item.description.map((des, idx) => (
                       <p key={`description-${idx}`}>{des}</p>
                     ))}
