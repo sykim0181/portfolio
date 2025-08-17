@@ -27,7 +27,7 @@ const Profile = () => {
     <motion.section {...appearMotionProps}>
       <div className="w-(--default-width) max-w-(--max-width) mt-[3rem] mx-auto flex flex-col gap-[2.5rem]">
         <ProfileSection sectionName="Skill">
-          <div className="flex gap-[0.7rem]">
+          <div className="flex gap-[0.7rem] flex-wrap">
             {SKILL_DATA.map((skill) => (
               <SkillItem skill={skill} size={"2.2rem"} key={skill.name} />
             ))}
