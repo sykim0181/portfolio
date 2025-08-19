@@ -6,19 +6,24 @@ import { cn } from "@/utils/cn";
 
 interface MemoticonProps {
   className?: string;
+  surprised?: boolean;
 }
 
 const Memoticon = (props: MemoticonProps) => {
-  const { className } = props;
+  const { className, surprised } = props;
 
   const [isHover, setIsHover] = useState(false);
 
   const onMouseEnter = () => setIsHover(true);
-  const onMouseLeave = () => setIsHover(false);
+  const onMouseLeave = () => {
+    if (surprised) return;
+    setIsHover(false);
+  };
 
-  const src = isHover
-    ? "/home/memoticon_surprised.png"
-    : "/home/memoticon_smiling.png";
+  const src =
+    surprised || isHover
+      ? "/home/memoticon_surprised.png"
+      : "/home/memoticon_smiling.png";
 
   return (
     <div

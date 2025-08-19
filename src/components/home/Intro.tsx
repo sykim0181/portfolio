@@ -1,33 +1,141 @@
-import { IoIosArrowDown } from "react-icons/io";
+"use client";
+
+import { useMemo, useRef } from "react";
 import Memoticon from "./Memoticon";
+import {
+  useScroll,
+  motion,
+  useTransform,
+  useMotionValueEvent,
+  useAnimate,
+} from "motion/react";
+import useIsScrolling from "@/hooks/useIsScrolling";
 
 const Intro = () => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const opacity = useTransform(scrollYProgress, [0.25, 0.8], [1, 0]);
+
   return (
-    <div id="first" className="sticky top-0 w-full h-dvh bg-white">
-      <div className="w-(--default-width) h-full max-w-(--max-width) my-0 mx-auto py-[2rem] flex flex-col">
-        <div className="flex-1 flex flex-col justify-center items-center gap-[1.5rem]">
-          <Memoticon className="w-[100px]" />
-          <p className="text-[1.2rem] font-bold text-center">
-            안녕하세요, <br className="inline sm:hidden" />
-            프론트엔드 개발자 김소연입니다 :)
-          </p>
-          <p className="text-[3rem] font-bold text-center">
-            Frontend Developer
-          </p>
-          <p className="text-center">
-            끈기와 성실함을 무기로, <br className="inline sm:hidden" />
-            주어진 문제를 집요하게 해결합니다.
-            <br />
-            사소한 아이디어라도 직접 시도해보고,{" "}
-            <br className="inline sm:hidden" />
-            매일 한 걸음씩 성장합니다.
-          </p>
+    <div ref={ref} className="w-full h-[400dvh]">
+      <div className="w-full h-dvh sticky top-0 overflow-hidden">
+        <motion.div
+          style={{ opacity }}
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full w-[min(80vw,80vh)] h-[min(80vw,80vh)] bg-(--primary-color) blur-2xl"
+        />
+        <div className="font-[SBAggroB] absolute left-1/2 top-1/4 transform -translate-x-1/2 text-[#575654]">
+          <div className="text-[min(10dvw,50dvh)] text-center leading-none">
+            <ScatterLine
+              text="FRONTEND"
+              scrollYProgress={scrollYProgress}
+              lineSpread={180}
+              letterStep={100}
+            />
+            <ScatterLine
+              text="DEVELOPER"
+              scrollYProgress={scrollYProgress}
+              lineSpread={150}
+            />
+          </div>
         </div>
-        <div className="mx-auto w-fit rounded-full bg-black text-white p-[0.5rem] flex justify-center items-center">
-          <IoIosArrowDown className="w-[1.6rem] h-[1.6rem]" />
-        </div>
+        <IntroContent scrollYProgress={scrollYProgress} />
       </div>
     </div>
+  );
+};
+
+const IntroContent = ({
+  scrollYProgress,
+}: {
+  scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
+}) => {
+  const [scope, animate] = useAnimate();
+  const isHidden = useRef(false);
+
+  useMotionValueEvent(scrollYProgress, "change", (value) => {
+    if (value >= 0.75 && !isHidden.current) {
+      animate(scope.current, { opacity: 0 });
+      isHidden.current = true;
+    } else if (value < 0.75 && isHidden.current) {
+      animate(scope.current, { opacity: 1 });
+      isHidden.current = false;
+    }
+  });
+
+  return (
+    <motion.div ref={scope} className="h-full w-full relative">
+      <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <EmojiFace />
+      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="absolute left-1/2 bottom-1/5 transform -translate-x-1/2 -translate-y-1/2 text-lg md:text-2xl font-bold text-center text-nowrap text-(--bg-color)"
+      >
+        안녕하세요, <br className="inline sm:hidden" />
+        프론트엔드 개발자 김소연입니다 :)
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const EmojiFace = () => {
+  const isScrolling = useIsScrolling(500);
+
+  return <Memoticon className="w-[200px]" surprised={isScrolling} />;
+};
+
+const ScatterLine = ({
+  text,
+  scrollYProgress,
+  lineSpread = 120,
+  letterStep = 100,
+  direction = "up",
+}: {
+  text: string;
+  scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
+  lineSpread?: number; // 줄의 위/아래 이동량(바깥쪽)
+  letterStep?: number; // 글자 좌우 이동 간격(바깥쪽)
+  direction?: "up" | "down";
+}) => {
+  const letters = useMemo(() => text.split(""), [text]);
+  const mid = (letters.length - 1) / 2;
+
+  const lineY = useTransform(
+    scrollYProgress,
+    [0.25, 0.8],
+    [0, direction === "up" ? -lineSpread : lineSpread]
+  );
+  const opacity = useTransform(scrollYProgress, [0.25, 0.8], [1, 0]);
+
+  return (
+    <motion.div
+      style={{ y: lineY }}
+      className="flex items-center justify-center"
+      aria-label={text}
+    >
+      {letters.map((ch, i) => {
+        const offsetIndex = i - mid; // 음수=왼쪽, 양수=오른쪽
+        const dxTarget =
+          Math.sign(offsetIndex) * Math.abs(offsetIndex) * letterStep;
+
+        const x = useTransform(scrollYProgress, [0.25, 1], [0, dxTarget]);
+
+        return (
+          <motion.span
+            key={`${ch}-${i}`}
+            className="inline-block will-change-transform"
+            style={{ x, opacity }}
+          >
+            {ch}
+          </motion.span>
+        );
+      })}
+    </motion.div>
   );
 };
 
