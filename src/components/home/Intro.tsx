@@ -76,8 +76,9 @@ const IntroContent = ({
         animate={{ opacity: 1 }}
         className="absolute left-1/2 bottom-1/5 transform -translate-x-1/2 -translate-y-1/2 text-lg md:text-2xl font-bold text-center text-nowrap text-(--bg-color)"
       >
-        안녕하세요, <br className="inline sm:hidden" />
-        프론트엔드 개발자 김소연입니다 :)
+        프론트엔드 개발자 김소연의 포트폴리오
+        {/* 안녕하세요, <br className="inline sm:hidden" />
+        프론트엔드 개발자 김소연입니다 :) */}
       </motion.div>
     </motion.div>
   );
