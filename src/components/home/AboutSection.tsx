@@ -1,6 +1,4 @@
-import AboutMe from "./AboutMe";
-import Profile from "./Profile";
-import Skill from "./Skill";
+import NewProfile from "./NewProfile";
 
 interface AboutSectionProps {
   ref: React.RefObject<HTMLDivElement | null>;
@@ -11,16 +9,9 @@ const AboutSection = ({ ref }: AboutSectionProps) => {
     <section
       id="about"
       ref={ref}
-      className="relative w-full py-[3rem] z-1 bg-(--bg-color)"
+      className="relative w-full z-1"
     >
-      <h2 className="mb-[2rem] text-white font-[PartialSansKR-Regular] text-[min(15vw,6rem)] font-normal">
-        About
-      </h2>
-      <div className="w-(--default-width) max-w-(--max-width) my-0 mx-auto flex flex-col gap-[6rem]">
-        {/* <AboutMe /> */}
-        {/* <Skill /> */}
-        <Profile />
-      </div>
+      <NewProfile />
     </section>
   );
 };
