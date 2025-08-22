@@ -19,7 +19,7 @@ const ProfileModal = ({ onCloseModal }: ProfileModalProps) => {
   return (
     <Root onCloseModal={onCloseModal}>
       <motion.div
-        className="w-(--default-width) max-w-(--max-width) h-[calc(100%-20px)] overflow-y-scroll absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-8 relative"
+        className="w-(--default-width) max-w-(--max-width) h-[calc(100%-20px)] overflow-y-scroll absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -27,8 +27,8 @@ const ProfileModal = ({ onCloseModal }: ProfileModalProps) => {
         <h1 className="text-3xl font-[Montserrat]">Profile</h1>
 
         <div className="mt-12">
-          <div className="flex gap-8">
-            <div className="relative">
+          <div className="flex flex-col md:flex-row gap-8">
+            <div className="relative w-fit mx-auto md:mx-0">
               <div className="w-[150px] h-[150px] rounded-full bg-(--primary-color) blur-2xl" />
               <Image
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
