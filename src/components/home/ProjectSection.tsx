@@ -1,7 +1,9 @@
+import { motion } from "motion/react";
 import { PROJECT_DATA } from "@/data/project";
 import ProjectItem from "./ProjectItem";
-import { ComponentProps, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { cn } from "@/utils/cn";
+import { appearMotionProps } from "@/constants/motion";
 
 interface ProjectSectionProps {
   ref: React.RefObject<HTMLDivElement | null>;
@@ -28,12 +30,16 @@ const ProjectSection = ({ ref }: ProjectSectionProps) => {
     <section
       id="projects"
       ref={ref}
-      className="relative w-full box-border py-[3rem] z-1 bg-(--bg-color)"
+      className="relative w-full box-border py-12 z-1 flex flex-col gap-12"
     >
-      <h2 className="text-white font-[PartialSansKR-Regular] text-[min(15vw,6rem)] font-normal">
+      <motion.h2
+        className="text-5xl font-bold text-center font-[PartialSansKR-Regular]"
+        {...appearMotionProps}
+      >
         Project
-      </h2>
-      <div className="w-(--default-width) max-w-(--max-width) flex flex-col items-center gap-[1.5rem] mx-auto mt-[2rem]">
+      </motion.h2>
+
+      <div className="w-(--default-width) max-w-(--max-width) flex flex-col items-center gap-8 mx-auto mt-[2rem]">
         <div className="flex gap-[1rem] w-full">
           {projectTypes.map((type) => (
             <ProjectNav
@@ -46,7 +52,7 @@ const ProjectSection = ({ ref }: ProjectSectionProps) => {
           ))}
         </div>
 
-        <div className="grid gap-[min(10vw,3rem)] w-full grid-cols-2 md:grid-cols-3">
+        <div className="grid gap-[min(10vw,3rem)] w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {projectData.map((project) => (
             <ProjectItem
               key={project.name}
@@ -61,24 +67,29 @@ const ProjectSection = ({ ref }: ProjectSectionProps) => {
   );
 };
 
-interface ProjectNavProps extends ComponentProps<"div"> {
+interface ProjectNavProps {
   isSelected?: boolean;
+  children: React.ReactNode;
+  onClick: () => void;
 }
 
 const ProjectNav = (props: ProjectNavProps) => {
-  const { isSelected, children, ...otherProps } = props;
+  const { isSelected, children, onClick } = props;
 
   return (
-    <div
+    <motion.div
       className={cn(
-        "border-1 rounded-[10px] px-[0.8rem] py-[0.3rem] cursor-pointer",
-        isSelected ? "bg-white text-black" : "border-white text-white",
-        "hover:bg-white hover:text-black"
+        "border-2 rounded-[10px] px-[0.8rem] py-[0.3rem] cursor-pointer sm:text-lg",
+        isSelected
+          ? "bg-(--secondary-color) text-white"
+          : "border-(--secondary-color) text-(--secondary-color)",
+        "hover:bg-(--secondary-color) hover:text-white"
       )}
-      {...otherProps}
+      onClick={onClick}
+      {...appearMotionProps}
     >
       {children}
-    </div>
+    </motion.div>
   );
 };
 

@@ -14,7 +14,7 @@ const Profile = () => {
   const [showProfileModal, setShowProfileModal] = useState(false);
 
   return (
-    <div className="w-(--default-width) max-w-(--max-width) min-h-dvh mx-auto flex flex-col gap-12 py-4">
+    <div className="w-(--default-width) max-w-(--max-width) min-h-dvh mx-auto flex flex-col gap-12 py-12">
       <motion.h1
         className="text-5xl font-bold text-center font-[PartialSansKR-Regular]"
         {...appearMotionProps}
