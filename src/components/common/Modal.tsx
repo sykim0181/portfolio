@@ -15,10 +15,11 @@ const ModalContext = createContext<{ closeModal: () => void } | null>(null);
 
 interface ModalProps {
   children?: React.ReactNode;
+  onCloseModal?: () => void;
 }
 
 export const Root = (props: ModalProps) => {
-  const { children } = props;
+  const { children, onCloseModal } = props;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,7 +27,13 @@ export const Root = (props: ModalProps) => {
 
   const closeModal = () => {
     setIsOpen(false);
-    setTimeout(() => router.back(), 300);
+    setTimeout(() => {
+      if (onCloseModal) {
+        onCloseModal();
+      } else {
+        router.back();
+      }
+    }, 300);
   };
 
   useEffect(() => {
@@ -67,7 +74,9 @@ const Overlay = () => {
   );
 };
 
-interface CloseButtonProps extends ComponentProps<"button"> {}
+interface CloseButtonProps extends ComponentProps<"button"> {
+  onCloseModal?: () => void
+}
 
 export const CloseButton = ({ children, ...otherProps }: CloseButtonProps) => {
   const modalContext = useContext(ModalContext);
