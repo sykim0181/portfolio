@@ -49,14 +49,6 @@ export const SKILL_DATA: TSkill[] = [
     src: "/skills/redux.svg",
   },
   {
-    name: "Jotai",
-    src: "/skills/jotai.png",
-  },
-  {
-    name: "Recoil",
-    src: "/skills/recoil.png",
-  },
-  {
     name: "Tanstack Query",
     src: "/skills/tanstack-query.png",
   },
