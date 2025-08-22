@@ -11,8 +11,8 @@ html {
 body {
   --default-width: 80%;
   --max-width: 1024px;
-  --primary-color: #F9CDCE;
-  --secondary-color: #f68eab;
+  --primary-color: #f9cdce;
+  --secondary-color: #8c8073;
   --skeleton-color: rgba(206, 206, 206, 0.5);
   --bg-color: #292826;
 
