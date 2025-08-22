@@ -62,7 +62,7 @@ const ContactSection = ({ ref }: ContactSectionProps) => {
           </div>
         </div>
       </div>
-      <div className="w-full h-[200dvh] bg-linear-to-b from-white to-(--secondary-color) opacity-50"></div>
+      <div className="w-full h-[200dvh] bg-linear-to-b from-white to-(--secondary-color) opacity-50 pointer-events-none"></div>
     </section>
   );
 };
