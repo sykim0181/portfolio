@@ -40,7 +40,7 @@ const ProjectSection = ({ ref }: ProjectSectionProps) => {
       </motion.h2>
 
       <div className="w-(--default-width) max-w-(--max-width) flex flex-col items-center gap-8 mx-auto mt-[2rem]">
-        <div className="flex gap-[1rem] w-full">
+        <div className="flex gap-[1rem] mx-auto">
           {projectTypes.map((type) => (
             <ProjectNav
               key={`project-type-${type}`}
@@ -79,7 +79,7 @@ const ProjectNav = (props: ProjectNavProps) => {
   return (
     <motion.div
       className={cn(
-        "border-2 rounded-[10px] px-[0.8rem] py-[0.3rem] cursor-pointer sm:text-lg",
+        "border-2 rounded-3xl px-4 py-1 cursor-pointer sm:text-lg",
         isSelected
           ? "bg-(--secondary-color) text-white"
           : "border-(--secondary-color) text-(--secondary-color)",
