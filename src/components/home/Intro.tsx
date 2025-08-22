@@ -27,21 +27,6 @@ const Intro = () => {
           style={{ opacity }}
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full w-[min(80vw,80vh)] h-[min(80vw,80vh)] bg-(--primary-color) blur-2xl"
         />
-        <div className="font-[SBAggroB] absolute left-1/2 top-1/4 transform -translate-x-1/2 text-[#575654]">
-          <div className="text-[min(10dvw,50dvh)] text-center leading-none">
-            <ScatterLine
-              text="FRONTEND"
-              scrollYProgress={scrollYProgress}
-              lineSpread={180}
-              letterStep={100}
-            />
-            <ScatterLine
-              text="DEVELOPER"
-              scrollYProgress={scrollYProgress}
-              lineSpread={150}
-            />
-          </div>
-        </div>
         <IntroContent scrollYProgress={scrollYProgress} />
       </div>
     </div>
@@ -67,18 +52,32 @@ const IntroContent = ({
   });
 
   return (
-    <motion.div ref={scope} className="h-full w-full relative">
+    <motion.div ref={scope} className="w-full h-full relative">
+      <div className="font-[SBAggroB] absolute left-1/2 top-1/4 transform -translate-x-1/2 text-[#575654]">
+        <div className="text-[min(10dvw,50dvh)] text-center leading-none">
+          <ScatterLine
+            text="FRONTEND"
+            scrollYProgress={scrollYProgress}
+            lineSpread={180}
+            letterStep={100}
+          />
+          <ScatterLine
+            text="DEVELOPER"
+            scrollYProgress={scrollYProgress}
+            lineSpread={150}
+          />
+        </div>
+      </div>
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <EmojiFace />
       </div>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
         className="absolute left-1/2 bottom-1/5 transform -translate-x-1/2 -translate-y-1/2 text-lg md:text-2xl font-bold text-center text-nowrap text-(--bg-color)"
       >
         프론트엔드 개발자 김소연의 포트폴리오
-        {/* 안녕하세요, <br className="inline sm:hidden" />
-        프론트엔드 개발자 김소연입니다 :) */}
       </motion.div>
     </motion.div>
   );
@@ -109,9 +108,9 @@ const ScatterLine = ({
   const lineY = useTransform(
     scrollYProgress,
     [0.25, 0.8],
-    [0, direction === "up" ? -lineSpread : lineSpread]
+    [direction === "up" ? -lineSpread : lineSpread, 0]
   );
-  const opacity = useTransform(scrollYProgress, [0.25, 0.8], [1, 0]);
+  const opacity = useTransform(scrollYProgress, [0.25, 0.8], [0.5, 1]);
 
   return (
     <motion.div
@@ -124,7 +123,7 @@ const ScatterLine = ({
         const dxTarget =
           Math.sign(offsetIndex) * Math.abs(offsetIndex) * letterStep;
 
-        const x = useTransform(scrollYProgress, [0.25, 1], [0, dxTarget]);
+        const x = useTransform(scrollYProgress, [0.25, 1], [dxTarget, 0]);
 
         return (
           <motion.span
