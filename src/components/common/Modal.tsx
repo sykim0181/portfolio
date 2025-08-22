@@ -38,16 +38,23 @@ export const Root = (props: ModalProps) => {
 
   useEffect(() => {
     setTimeout(() => setIsOpen(true), 300);
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.offsetWidth;
+    document.body.style.setProperty("--scrollbar-width", `${scrollbarWidth}px`);
     document.body.style.overflow = "hidden";
 
     return () => {
       document.body.style.overflow = "auto";
+      document.body.style.removeProperty("--scrollbar-width");
     };
   }, []);
 
   return createPortal(
     <ModalContext.Provider value={{ closeModal }}>
-      <div className="w-dvw h-dvh fixed top-0 left-0 z-500">
+      <div
+        className="w-dvw h-dvh fixed top-0 left-0 z-500"
+        id="modal_container"
+      >
         <Overlay />
         <AnimatePresence>{isOpen && children}</AnimatePresence>
       </div>
@@ -75,7 +82,7 @@ const Overlay = () => {
 };
 
 interface CloseButtonProps extends ComponentProps<"button"> {
-  onCloseModal?: () => void
+  onCloseModal?: () => void;
 }
 
 export const CloseButton = ({ children, ...otherProps }: CloseButtonProps) => {
