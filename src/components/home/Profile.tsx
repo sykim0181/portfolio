@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { HTMLMotionProps, motion } from "motion/react";
 import { appearMotionProps } from "@/constants/motion";
 import { useState } from "react";
 import ProfileModal from "./ProfileModal";
@@ -22,7 +22,7 @@ const Profile = () => {
         ABOUT ME
       </motion.h1>
 
-      <motion.div className="text-2xl mt-12" {...appearMotionProps}>
+      <motion.div className="text-lg md:text-xl lg:text-2xl mt-12" {...appearMotionProps}>
         <div>안녕하세요!</div>
         <div>프론트엔드 개발자 김소연입니다 :)</div>
       </motion.div>
@@ -32,6 +32,7 @@ const Profile = () => {
           icon={MdAllInclusive}
           text={"끈기와 성실함을 무기로, 주어진 문제를 집요하게 해결합니다."}
           className="row-start-1 col-start-2"
+          transition={{ delay: 0.2 }}
         ></Item>
         <Item
           icon={MdInsights}
@@ -39,6 +40,7 @@ const Profile = () => {
             "사소한 아이디어라도 직접 시도해보고, 매일 한 걸음씩 성장합니다."
           }
           className="row-start-2 col-start-1"
+          transition={{ delay: 0.4 }}
         ></Item>
         <Item
           icon={MdOutlineWbIncandescent}
@@ -46,6 +48,7 @@ const Profile = () => {
             "사용자의 시선에서 고민하며, 더 편리하고 직관적인 경험을 설계합니다."
           }
           className="row-start-2 col-start-2"
+          transition={{ delay: 0.6 }}
         ></Item>
       </div>
 
@@ -64,22 +67,27 @@ const Profile = () => {
   );
 };
 
-const Item = ({
-  text,
-  className,
-  icon: Icon,
-}: {
+interface ItemProps extends HTMLMotionProps<"div"> {
   text: string;
-  className?: string;
   icon: IconType;
-}) => {
+}
+
+const Item = ({ text, className, icon: Icon, transition }: ItemProps) => {
+  const motionProps = {
+    ...appearMotionProps,
+    transition: {
+      ...appearMotionProps.transition,
+      ...transition,
+    },
+  };
+
   return (
     <motion.div
       className={cn(
         "w-full aspect-square lg:aspect-auto p-4 lg:p-6 rounded-2xl flex flex-col justify-between lg:gap-8 bg-(--secondary-color) text-white",
         className
       )}
-      {...appearMotionProps}
+      {...motionProps}
     >
       <Icon className="text-3xl" />
       <span className="md:text-xl text-right text-pretty break-keep">
