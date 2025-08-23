@@ -28,19 +28,22 @@ const ProjectContent = (props: ProjectContentProps) => {
         </div>
       </div>
 
-      <div className="flex gap-x-[1rem] gap-y-[0.5rem] flex-wrap">
-        {project.skills.map((skill) => (
-          <div
-            key={skill}
-            className="py-[0.5rem] px-[1rem] rounded-[1.5rem] bg-white text-black hover:bg-black hover:text-white border-black border-2 text-[0.8rem] md:text-[1rem]"
-          >
-            {skill}
-          </div>
-        ))}
+      <div className="flex flex-col gap-[1rem]">
+        <h2 className="text-3xl font-bold">💻 기술 스택</h2>
+        <div className="flex gap-x-[1rem] gap-y-[0.5rem] flex-wrap">
+          {project.skills.map((skill) => (
+            <div
+              key={skill}
+              className="py-1 px-4 rounded-3xl bg-white text-black hover:bg-black hover:text-white border-black border-2 text-xs md:text-sm"
+            >
+              {skill}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="flex flex-col gap-[1rem]">
-        <h2 className="text-[1.5rem] font-bold">🧩 상세 설명</h2>
+        <h2 className="text-3xl font-bold">🧩 상세 설명</h2>
         <div className="flex flex-col gap-[1rem]">
           {project.detail_description.map((des, idx) => (
             <DescriptionParagraph
