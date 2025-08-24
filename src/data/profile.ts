@@ -8,7 +8,7 @@ export const CAREER_DATA: TDataItem[] = [
   {
     period: "2024.04 - 2025.02",
     title: "(주)티맥스가이아",
-    description: ["문서 협업 플랫폼 GAIA Docs의 오피스(문서 편집 웹앱) 개발"],
+    description: ["문서 협업 플랫폼 GAIA Docs의 오피스(문서 편집 도구) 개발"],
   },
 ];
 
