@@ -15,6 +15,9 @@ body {
   --secondary-color: #8c8073;
   --skeleton-color: rgba(206, 206, 206, 0.5);
   --bg-color: #292826;
+  
+  --swiper-pagination-color: var(--primary-color);
+  --swiper-theme-color: var(--primary-color);
 
   margin: 0;
 }

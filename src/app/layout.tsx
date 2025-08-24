@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { pretendard } from "@/fonts/fonts";
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 export const metadata: Metadata = {
   title: "김소연의 포트폴리오",
