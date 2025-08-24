@@ -21,7 +21,7 @@ const Intro = () => {
   const opacity = useTransform(scrollYProgress, [0.25, 0.8], [1, 0]);
 
   return (
-    <div ref={ref} className="w-full h-[400dvh]">
+    <div ref={ref} className="w-full h-[300dvh]">
       <div className="w-full h-dvh sticky top-0 overflow-hidden">
         <motion.div
           style={{ opacity }}
