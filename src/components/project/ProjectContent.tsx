@@ -1,8 +1,8 @@
 import { Description, Project } from "@/types/common";
 import DescriptionParagraph from "../common/DescriptionParagraph";
-import ProjectImage from "./ProjectImage";
 import { convertPeriodToString } from "@/utils/convertPeriodToString";
 import MarkDownContainer from "../common/MarkDownContainer";
+import ProjectImageSwiper from "./ProjectImageSwiper";
 
 interface ProjectContentProps {
   project: Project;
@@ -14,7 +14,7 @@ const ProjectContent = (props: ProjectContentProps) => {
   return (
     <div className="w-full box-border p-[2rem] flex flex-col gap-[2rem]">
       <div className="flex flex-col md:grid md:grid-cols-2 gap-[1rem]">
-        <ProjectImage src={project.image} />
+        <ProjectImageSwiper images={project.images} />
         <div className="flex flex-col gap-[1rem] md:p-[1rem] md:flex-1">
           <p className="text-[1rem] md:text-[1.2rem]">
             {project.short_description}
