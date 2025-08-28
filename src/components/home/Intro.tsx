@@ -8,6 +8,7 @@ import {
   useTransform,
   useMotionValueEvent,
   useAnimate,
+  useMotionTemplate,
 } from "motion/react";
 import useIsScrolling from "@/hooks/useIsScrolling";
 
@@ -51,6 +52,9 @@ const IntroContent = ({
     }
   });
 
+  const bgXpercent = useTransform(scrollYProgress, [0.25, 0.8], [0, 100]);
+  const backgroundPosition = useMotionTemplate` ${bgXpercent}% 0`;
+
   return (
     <motion.div ref={scope} className="w-full h-full relative">
       <div className="font-[SBAggroB] absolute left-1/2 top-1/4 transform -translate-x-1/2 text-[#575654]">
@@ -71,14 +75,15 @@ const IntroContent = ({
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <EmojiFace />
       </div>
-      <motion.div
+      <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="absolute left-1/2 bottom-1/5 transform -translate-x-1/2 -translate-y-1/2 text-lg md:text-2xl font-bold text-center text-nowrap text-(--bg-color)"
+        className="absolute left-1/2 bottom-1/5 transform -translate-x-1/2 -translate-y-1/2 text-lg md:text-2xl font-bold text-center text-nowrap text-transparent bg-clip-text bg-gradient-to-r from-(--bg-color) via-[#ddcab6] to-(--bg-color) bg-size-[200%_200%]"
+        style={{ backgroundPosition }}
       >
         프론트엔드 개발자 김소연의 포트폴리오
-      </motion.div>
+      </motion.span>
     </motion.div>
   );
 };
