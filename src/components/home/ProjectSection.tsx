@@ -3,7 +3,7 @@ import { PROJECT_DATA } from "@/data/project";
 import ProjectItem from "./ProjectItem";
 import React, { useMemo, useState } from "react";
 import { cn } from "@/utils/cn";
-import { appearMotionProps } from "@/constants/motion";
+import { getAppearMotionProps } from "@/utils/motionProps";
 
 interface ProjectSectionProps {
   ref: React.RefObject<HTMLDivElement | null>;
@@ -34,7 +34,7 @@ const ProjectSection = ({ ref }: ProjectSectionProps) => {
     >
       <motion.h2
         className="text-5xl font-bold text-center font-[PartialSansKR-Regular]"
-        {...appearMotionProps}
+        {...getAppearMotionProps()}
       >
         Project
       </motion.h2>
@@ -86,7 +86,7 @@ const ProjectNav = (props: ProjectNavProps) => {
         "hover:bg-(--secondary-color) hover:text-white"
       )}
       onClick={onClick}
-      {...appearMotionProps}
+      {...getAppearMotionProps()}
     >
       {children}
     </motion.div>

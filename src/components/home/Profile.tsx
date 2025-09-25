@@ -1,5 +1,4 @@
-import { HTMLMotionProps, motion } from "motion/react";
-import { appearMotionProps } from "@/constants/motion";
+import { motion } from "motion/react";
 import { useState } from "react";
 import ProfileModal from "./ProfileModal";
 import { cn } from "@/utils/cn";
@@ -9,9 +8,13 @@ import {
   MdOutlineWbIncandescent,
 } from "react-icons/md";
 import { IconType } from "react-icons";
+import { getAppearMotionProps } from "@/utils/motionProps";
+import { Transition } from "motion";
 
 const Profile = () => {
   const [showProfileModal, setShowProfileModal] = useState(false);
+
+  const appearMotionProps = getAppearMotionProps();
 
   return (
     <div className="w-(--default-width) max-w-(--max-width) min-h-dvh mx-auto flex flex-col gap-12 py-12">
@@ -22,7 +25,10 @@ const Profile = () => {
         ABOUT ME
       </motion.h1>
 
-      <motion.div className="text-lg md:text-xl lg:text-2xl mt-12" {...appearMotionProps}>
+      <motion.div
+        className="text-lg md:text-xl lg:text-2xl mt-12"
+        {...appearMotionProps}
+      >
         <div>안녕하세요!</div>
         <div>프론트엔드 개발자 김소연입니다 :)</div>
       </motion.div>
@@ -67,19 +73,15 @@ const Profile = () => {
   );
 };
 
-interface ItemProps extends HTMLMotionProps<"div"> {
+interface ItemProps {
   text: string;
   icon: IconType;
+  className?: string;
+  transition?: Transition;
 }
 
 const Item = ({ text, className, icon: Icon, transition }: ItemProps) => {
-  const motionProps = {
-    ...appearMotionProps,
-    transition: {
-      ...appearMotionProps.transition,
-      ...transition,
-    },
-  };
+  const motionProps = getAppearMotionProps(0, 50, 1, transition);
 
   return (
     <motion.div

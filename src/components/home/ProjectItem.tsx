@@ -35,6 +35,7 @@ const ProjectItem = (props: Props) => {
       scale: 1,
       transition: {
         type: "spring",
+        duration: 1,
       },
     },
   };
