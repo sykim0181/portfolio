@@ -4,6 +4,7 @@ import ProjectItem from "./ProjectItem";
 import React, { useMemo, useState } from "react";
 import { cn } from "@/utils/cn";
 import { getAppearMotionProps } from "@/utils/motionProps";
+import { partialSans } from "@/fonts/fonts";
 
 interface ProjectSectionProps {
   ref: React.RefObject<HTMLDivElement | null>;
@@ -33,7 +34,7 @@ const ProjectSection = ({ ref }: ProjectSectionProps) => {
       className="relative w-full box-border py-12 z-1 flex flex-col gap-12"
     >
       <motion.h2
-        className="text-5xl font-bold text-center font-[PartialSansKR-Regular]"
+        className={`text-5xl font-bold text-center ${partialSans.className}`}
         {...getAppearMotionProps()}
       >
         Project

@@ -11,6 +11,7 @@ import {
   useMotionTemplate,
 } from "motion/react";
 import useIsScrolling from "@/hooks/useIsScrolling";
+import { sbAggroB } from "@/fonts/fonts";
 
 const Intro = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -57,7 +58,9 @@ const IntroContent = ({
 
   return (
     <motion.div ref={scope} className="w-full h-full relative">
-      <div className="font-[SBAggroB] absolute left-1/2 top-1/4 transform -translate-x-1/2 text-[#575654]">
+      <div
+        className={`${sbAggroB.className} absolute left-1/2 top-1/4 transform -translate-x-1/2 text-[#575654]`}
+      >
         <div className="text-[min(10dvw,50dvh)] text-center leading-none">
           <ScatterLine
             text="FRONTEND"

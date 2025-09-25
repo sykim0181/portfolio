@@ -10,6 +10,7 @@ import { SKILL_DATA } from "@/data/skill";
 import SkillItem from "./SkillItem";
 import Image from "next/image";
 import { IoClose } from "react-icons/io5";
+import { montserrat } from "@/fonts/fonts";
 
 interface ProfileModalProps {
   onCloseModal: () => void;
@@ -24,7 +25,7 @@ const ProfileModal = ({ onCloseModal }: ProfileModalProps) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <h1 className="text-3xl font-[Montserrat]">Profile</h1>
+        <h1 className={`text-3xl ${montserrat.className}`}>Profile</h1>
 
         <div className="mt-12">
           <div className="flex flex-col md:flex-row gap-8">
