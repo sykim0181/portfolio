@@ -2,37 +2,33 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { cn } from "@/utils/cn";
+import useIsScrolling from "@/hooks/useIsScrolling";
 
-interface MemoticonProps {
-  className?: string;
-  surprised?: boolean;
-}
-
-const Memoticon = (props: MemoticonProps) => {
-  const { className, surprised } = props;
+const EmojiFace = () => {
+  const isScrolling = useIsScrolling(500);
 
   const [isHover, setIsHover] = useState(false);
 
   const onMouseEnter = () => setIsHover(true);
   const onMouseLeave = () => {
-    if (surprised) return;
+    if (isScrolling) return;
     setIsHover(false);
   };
 
   const src =
-    surprised || isHover
+    isScrolling || isHover
       ? "/home/memoticon_surprised.png"
       : "/home/memoticon_smiling.png";
 
   return (
     <div
-      className={cn("aspect-square", className)}
+      className="aspect-square w-[200px]"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       <motion.img
         src={src}
+        fetchPriority="high"
         className="w-full h-full object-contain"
         whileHover={{ scale: 1.1 }}
       />
@@ -40,4 +36,4 @@ const Memoticon = (props: MemoticonProps) => {
   );
 };
 
-export default Memoticon;
+export default EmojiFace;

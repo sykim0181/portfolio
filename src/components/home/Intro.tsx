@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useRef } from "react";
-import Memoticon from "./Memoticon";
 import {
   useScroll,
   motion,
@@ -10,8 +9,8 @@ import {
   useAnimate,
   useMotionTemplate,
 } from "motion/react";
-import useIsScrolling from "@/hooks/useIsScrolling";
 import { sbAggroB } from "@/fonts/fonts";
+import EmojiFace from "./EmojiFace";
 
 const Intro = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -89,12 +88,6 @@ const IntroContent = ({
       </motion.span>
     </motion.div>
   );
-};
-
-const EmojiFace = () => {
-  const isScrolling = useIsScrolling(500);
-
-  return <Memoticon className="w-[200px]" surprised={isScrolling} />;
 };
 
 const ScatterLine = ({
