@@ -17,8 +17,8 @@ const EmojiFace = () => {
 
   const src =
     isScrolling || isHover
-      ? "/home/memoticon_surprised.png"
-      : "/home/memoticon_smiling.png";
+      ? "/home/memoticon_surprised.webp"
+      : "/home/memoticon_smiling.webp";
 
   return (
     <div
