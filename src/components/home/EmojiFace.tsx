@@ -28,6 +28,7 @@ const EmojiFace = () => {
     >
       <motion.img
         src={src}
+        alt="Face Emoji"
         fetchPriority="high"
         className="w-full h-full object-contain"
         whileHover={{ scale: 1.1 }}
