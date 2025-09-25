@@ -11,7 +11,7 @@ const ProjectHeader = (props: ProjectHeaderProps) => {
   const { project } = props;
 
   const buttonStyle =
-    "flex justify-center items-center text-black text-[1.5rem] xs:text-[2rem]";
+    "flex justify-center items-center text-black text-[1.5rem] xs:text-[1.5rem] sm:text-[1.8rem]";
 
   const Button = ({
     href,

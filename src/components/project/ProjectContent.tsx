@@ -12,7 +12,7 @@ const ProjectContent = (props: ProjectContentProps) => {
   const { project } = props;
 
   return (
-    <div className="w-full box-border p-[2rem] flex flex-col gap-[2rem]">
+    <div className="w-full box-border p-[1rem] sm:p-[2rem] flex flex-col gap-[2rem]">
       <div className="flex flex-col md:grid md:grid-cols-2 gap-[1rem]">
         <ProjectImageSwiper images={project.images} />
         <div className="flex flex-col gap-[1rem] md:p-[1rem] md:flex-1">

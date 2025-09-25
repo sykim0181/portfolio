@@ -9,8 +9,8 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const project = await getProjectById(Number(id));
 
   return (
-    <div className="w-(--default-width) max-w-(--max-width) mx-auto py-[2rem]">
-      <div className="flex px-[2rem] mb-[2rem]">
+    <div className="xs:w-(--default-width) max-w-(--max-width) mx-auto py-[2rem]">
+      <div className="flex px-[1rem] sm:px-[2rem] mb-[1rem] sm:mb-[2rem]">
         <button className="text-[1.5rem] xs:text-[2rem]">
           <Link href="/">
             <AiFillHome />
@@ -18,7 +18,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
         </button>
       </div>
 
-      <div className="px-[2rem]">
+      <div className="px-[1rem] sm:px-[2rem]">
         <ProjectHeader project={project} />
       </div>
 
