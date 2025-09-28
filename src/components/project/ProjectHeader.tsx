@@ -27,7 +27,7 @@ const ProjectHeader = (props: ProjectHeaderProps) => {
 
   return (
     <div className="w-full box-border flex gap-[1rem] items-center">
-      <div className="flex-1 text-[1rem] xs:text-[1.2rem] md:text-[1.5rem]">
+      <div className="flex-1 text-xl xs:text-2xl md:text-3xl">
         {project.name}
       </div>
       <div className="flex gap-[1rem]">

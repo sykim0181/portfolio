@@ -29,7 +29,7 @@ const ProjectContent = (props: ProjectContentProps) => {
       </div>
 
       <div className="flex flex-col gap-[1rem]">
-        <h2 className="text-3xl font-bold">💻 기술 스택</h2>
+        <h2 className="text-lg xs:text-xl md:text-2xl font-bold">💻 기술 스택</h2>
         <div className="flex gap-x-[1rem] gap-y-[0.5rem] flex-wrap">
           {project.skills.map((skill) => (
             <div
@@ -43,7 +43,7 @@ const ProjectContent = (props: ProjectContentProps) => {
       </div>
 
       <div className="flex flex-col gap-[1rem]">
-        <h2 className="text-3xl font-bold">🧩 상세 설명</h2>
+        <h2 className="text-lg xs:text-xl md:text-2xl font-bold">🧩 상세 설명</h2>
         <div className="flex flex-col gap-[1rem]">
           {project.detail_description.map((des, idx) => (
             <DescriptionParagraph
@@ -56,7 +56,7 @@ const ProjectContent = (props: ProjectContentProps) => {
 
       {project.trouble_shooting && (
         <div className="flex flex-col gap-[1rem]">
-          <h2 className="text-[1.5rem] font-bold">🛠️ 트러블 슈팅</h2>
+          <h2 className="text-lg xs:text-xl md:text-2xl font-bold">🛠️ 트러블 슈팅</h2>
           <div className="flex flex-col gap-[1rem]">
             {project.trouble_shooting.map((des, idx) => (
               <DescriptionParagraph
@@ -70,7 +70,7 @@ const ProjectContent = (props: ProjectContentProps) => {
 
       {project.what_i_learn && (
         <div className="flex flex-col gap-[1rem]">
-          <h2 className="text-[1.5rem] font-bold">🌱 배운점</h2>
+          <h2 className="text-lg xs:text-xl md:text-2xl font-bold">🌱 배운점</h2>
           <div className="flex flex-col gap-[1rem]">
             {project.what_i_learn.map((des, idx) => {
               const description: Description = {
