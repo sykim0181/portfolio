@@ -1,16 +1,15 @@
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue } from "jotai";
 import { useEffect, useRef } from "react";
 import { cursorTextAtom, cursorTypeAtom } from "@/atoms/cursorAtom";
 import { Position } from "@/types/common";
-import { checkIsMobile } from "@/utils/checkIsMobile";
 import { useAnimationFrame, useMotionValue, useSpring } from "motion/react";
 
 type Size = { w: number; h: number };
 
 const useCursor = () => {
-  const [type, setType] = useAtom(cursorTypeAtom);
+  const type = useAtomValue(cursorTypeAtom);
   const text = useAtomValue(cursorTextAtom);
-  
+
   const cursorElementRef = useRef<HTMLDivElement>(null); // cursor element
   const sizeRef = useRef<Size>({ w: 0, h: 0 });
   const positionRef = useRef<Position>({ x: 0, y: 0 });
@@ -20,23 +19,16 @@ const useCursor = () => {
   const sx = useSpring(x);
   const sy = useSpring(y);
 
-  const measure = () => {
+  useEffect(() => {
+    // 커서의 타입, 내부 텍스트가 바뀔 때 사이즈 측정
     const rect = cursorElementRef.current?.getBoundingClientRect();
     sizeRef.current = { w: rect?.width ?? 0, h: rect?.height ?? 0 };
-  };
+  }, [type, text, cursorElementRef, sizeRef]);
 
   useEffect(() => {
-    measure(); // 커서의 타입, 내부 텍스트가 바뀔 때 사이즈 측정
-  }, [type, text]);
+    const root = document.getElementById("root");
 
-  useEffect(() => {
     const eventHandler = (e: MouseEvent) => {
-      if (checkIsMobile()) {
-        return;
-      }
-
-      setType((type) => (type === "none" ? "default" : type));
-
       const { w, h } = sizeRef.current;
       positionRef.current = {
         x: e.clientX - w / 2,
@@ -44,12 +36,12 @@ const useCursor = () => {
       };
     };
 
-    window.addEventListener("mousemove", eventHandler);
+    root?.addEventListener("pointermove", eventHandler);
 
     return () => {
-      window.removeEventListener("mousemove", eventHandler);
+      root?.removeEventListener("pointermove", eventHandler);
     };
-  }, [setType]);
+  }, [sizeRef, positionRef]);
 
   useAnimationFrame(() => {
     x.set(positionRef.current.x);

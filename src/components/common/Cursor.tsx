@@ -58,7 +58,7 @@ const Cursor = () => {
   return (
     <div
       id="container-cursor"
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-100"
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-100 pointer-fine:block hidden"
     >
       <motion.div
         ref={ref}
