@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { pretendard } from "@/fonts/fonts";
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "김소연의 포트폴리오",
@@ -24,6 +25,7 @@ export default function RootLayout({
           {modal}
         </main>
         <div id="modal-root" />
+        <Analytics />
       </body>
     </html>
   );
