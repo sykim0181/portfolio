@@ -30,12 +30,12 @@ export const PROJECT_DATA: {
     imgSrc: "/projects/advancing-connector.gif",
     type: "WORK",
   },
-  {
-    id: 6,
-    name: "GAIA Office 기능 유지 보수",
-    imgSrc: "/projects/gaia-office.png",
-    type: "WORK",
-  },
+  // {
+  //   id: 6,
+  //   name: "GAIA Office 기능 유지 보수",
+  //   imgSrc: "/projects/gaia-office.png",
+  //   type: "WORK",
+  // },
   {
     id: 1,
     name: "music-archiving",
