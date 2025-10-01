@@ -33,7 +33,7 @@ const ProfileModal = ({ onCloseModal }: ProfileModalProps) => {
               <div className="w-[150px] h-[150px] rounded-full bg-(--primary-color) blur-2xl" />
               <Image
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                src="/home/memoticon_smiling.png"
+                src="/home/memoticon_smiling.webp"
                 alt="프로필"
                 width={100}
                 height={100}
