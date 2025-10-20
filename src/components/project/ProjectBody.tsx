@@ -4,11 +4,11 @@ import { convertPeriodToString } from "@/utils/convertPeriodToString";
 import MarkDownContainer from "../common/MarkDownContainer";
 import ProjectImageSwiper from "./ProjectImageSwiper";
 
-interface ProjectContentProps {
+interface ProjectBodyProps {
   project: Project;
 }
 
-const ProjectContent = (props: ProjectContentProps) => {
+const ProjectBody = (props: ProjectBodyProps) => {
   const { project } = props;
 
   return (
@@ -90,4 +90,4 @@ const ProjectContent = (props: ProjectContentProps) => {
   );
 };
 
-export default ProjectContent;
+export default ProjectBody;

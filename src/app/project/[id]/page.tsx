@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AiFillHome } from "react-icons/ai";
-import ProjectContent from "@/components/project/ProjectContent";
+import ProjectBody from "@/components/project/ProjectBody";
 import { getProjectById } from "@/libs/supabase/query";
 import ProjectHeader from "@/components/project/ProjectHeader";
 
@@ -22,7 +22,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <ProjectHeader project={project} />
       </div>
 
-      <ProjectContent project={project} />
+      <ProjectBody project={project} />
     </div>
   );
 };
