@@ -82,8 +82,8 @@ const ProfileSection = (props: ProfileSectionProps) => {
   const { sectionName, items, children } = props;
 
   return (
-    <section key={`profile-${sectionName}`} className="">
-      <h4 className={`w-full text-lg font-bold`}>{sectionName}</h4>
+    <section key={`profile-${sectionName}`}>
+      <h4 className={`w-full text-lg ${montserrat.className}`}>{sectionName}</h4>
       <div className="mt-[1rem] flex flex-col gap-[1rem]">
         {children}
         {items &&
@@ -92,7 +92,7 @@ const ProfileSection = (props: ProfileSectionProps) => {
               <div className="flex flex-col xs:grid xs:grid-cols-[1fr_2fr]">
                 <p>{item.period}</p>
                 <div>
-                  <p className="font-bold">{item.title}</p>
+                  <p>{item.title}</p>
                   {item.description.length > 0 && (
                     <div className="text-gray-500 ">
                       {item.description.map((des, idx) => (
