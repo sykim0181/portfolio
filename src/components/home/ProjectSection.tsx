@@ -41,7 +41,7 @@ const ProjectSection = ({ ref }: ProjectSectionProps) => {
       </motion.h2>
 
       <div className="w-(--default-width) max-w-(--max-width) flex flex-col items-center gap-8 mx-auto mt-[2rem]">
-        <div className="flex gap-[1rem] mx-auto">
+        <div className="flex flex-wrap gap-[1rem] mx-auto">
           {projectTypes.map((type) => (
             <ProjectNav
               key={`project-type-${type}`}
