@@ -20,7 +20,7 @@ const ProfileModal = ({ onCloseModal }: ProfileModalProps) => {
   return (
     <Root onCloseModal={onCloseModal}>
       <motion.div
-        className="w-(--default-width) max-w-(--max-width) h-[calc(100%-20px)] overflow-y-scroll absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-8"
+        className="w-[calc(100%-20px)] xs:w-(--default-width) max-w-(--max-width) h-[calc(100%-20px)] overflow-y-scroll absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -83,7 +83,9 @@ const ProfileSection = (props: ProfileSectionProps) => {
 
   return (
     <section key={`profile-${sectionName}`}>
-      <h4 className={`w-full text-lg ${montserrat.className}`}>{sectionName}</h4>
+      <h4 className={`w-full text-lg ${montserrat.className}`}>
+        {sectionName}
+      </h4>
       <div className="mt-[1rem] flex flex-col gap-[1rem]">
         {children}
         {items &&
