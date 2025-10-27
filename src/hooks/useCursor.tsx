@@ -1,5 +1,5 @@
-import { useAtomValue } from "jotai";
-import { useEffect, useRef } from "react";
+import { useAtom, useAtomValue } from "jotai";
+import { useEffect, useRef, useState } from "react";
 import { cursorTextAtom, cursorTypeAtom } from "@/atoms/cursorAtom";
 import { Position } from "@/types/common";
 import { useAnimationFrame, useMotionValue, useSpring } from "motion/react";
@@ -7,7 +7,7 @@ import { useAnimationFrame, useMotionValue, useSpring } from "motion/react";
 type Size = { w: number; h: number };
 
 const useCursor = () => {
-  const type = useAtomValue(cursorTypeAtom);
+  const [type] = useAtom(cursorTypeAtom);
   const text = useAtomValue(cursorTextAtom);
 
   const cursorElementRef = useRef<HTMLDivElement>(null); // cursor element
@@ -18,6 +18,8 @@ const useCursor = () => {
   const y = useMotionValue(0);
   const sx = useSpring(x);
   const sy = useSpring(y);
+
+  const [mouseMoved, setMouseMoved] = useState(false);
 
   useEffect(() => {
     // 커서의 타입, 내부 텍스트가 바뀔 때 사이즈 측정
@@ -34,6 +36,7 @@ const useCursor = () => {
         x: e.clientX - w / 2,
         y: e.clientY - h / 2,
       };
+      setMouseMoved(true);
     };
 
     root?.addEventListener("pointermove", eventHandler);
@@ -41,7 +44,7 @@ const useCursor = () => {
     return () => {
       root?.removeEventListener("pointermove", eventHandler);
     };
-  }, [sizeRef, positionRef]);
+  }, [sizeRef, positionRef, setMouseMoved]);
 
   useAnimationFrame(() => {
     x.set(positionRef.current.x);
@@ -54,6 +57,7 @@ const useCursor = () => {
     y: sy,
     type,
     text,
+    showCursor: mouseMoved,
   };
 };
 
