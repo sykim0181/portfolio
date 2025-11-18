@@ -53,7 +53,8 @@ const ProjectItem = (props: Props) => {
         <motion.img
           src={imgSrc}
           alt={`프로젝트 ${name} 이미지`}
-          fetchPriority="high"
+          // fetchPriority="high"
+          loading="lazy"
           className="w-full h-full object-cover"
           whileHover={{
             scale: 1.1,
