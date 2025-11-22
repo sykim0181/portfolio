@@ -12,10 +12,12 @@ const ProjectIssue = ({ issue }: ProjectIssueProps) => {
     <div>
       <h3 className="text-base xs:text-lg font-bold">{issue.title}</h3>
       <div className="flex flex-col gap-4 mt-4">
-        <Part title="문제" content={issue.problem} />
-        <Part title="접근" content={issue.approach} />
-        <Part title="해결" content={issue.solution} />
-        <Part title="성과" content={issue.accomplishment} />
+        {issue.problem && <Part title="문제" content={issue.problem} />}
+        {issue.approach && <Part title="접근" content={issue.approach} />}
+        {issue.solution && <Part title="해결" content={issue.solution} />}
+        {issue.accomplishment && (
+          <Part title="성과" content={issue.accomplishment} />
+        )}
       </div>
     </div>
   );

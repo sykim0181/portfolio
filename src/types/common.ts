@@ -25,8 +25,8 @@ export type Feature = {
 
 export type Issue = {
   title: string;
-  problem: string[];
-  approach: string[];
-  solution: string[] | Description[];
-  accomplishment: string[];
+  problem?: string[];
+  approach?: string[];
+  solution?: string[] | Description[];
+  accomplishment?: string[];
 };
