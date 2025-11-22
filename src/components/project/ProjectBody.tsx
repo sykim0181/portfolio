@@ -55,8 +55,8 @@ const ProjectBody = (props: ProjectBodyProps) => {
               const ft = feat as Feature;
               return (
                 <ProjectFeature
-                  key={`feature-${idx+1}`}
-                  title={`${idx+1}. ${ft.title}`}
+                  key={`feature-${idx + 1}`}
+                  title={`${idx + 1}. ${ft.title}`}
                   images={ft.images}
                   content={ft.content}
                 />
@@ -89,6 +89,22 @@ const ProjectBody = (props: ProjectBodyProps) => {
             {project.trouble_shooting.map((des, idx) => (
               <DescriptionParagraph
                 key={`trouble_shooting(${idx})`}
+                description={des as Description}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {project.etc && (
+        <div className="flex flex-col gap-[1rem]">
+          <h2 className="text-lg xs:text-xl md:text-2xl font-bold">
+            ➕ 기타 내용
+          </h2>
+          <div className="flex flex-col gap-[1rem]">
+            {project.etc.map((des, idx) => (
+              <DescriptionParagraph
+                key={`etc-${idx})`}
                 description={des as Description}
               />
             ))}

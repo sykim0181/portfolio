@@ -45,6 +45,7 @@ export type Database = {
           created_at: string
           deployment: string | null
           detail_description: Json[]
+          etc: Json[] | null
           feature: Json[] | null
           github: string | null
           id: number
@@ -63,6 +64,7 @@ export type Database = {
           created_at?: string
           deployment?: string | null
           detail_description: Json[]
+          etc?: Json[] | null
           feature?: Json[] | null
           github?: string | null
           id?: number
@@ -81,6 +83,7 @@ export type Database = {
           created_at?: string
           deployment?: string | null
           detail_description?: Json[]
+          etc?: Json[] | null
           feature?: Json[] | null
           github?: string | null
           id?: number
