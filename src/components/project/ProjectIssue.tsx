@@ -32,7 +32,7 @@ const Part = ({ title, content }: PartProps) => {
   return (
     <div>
       <h4 className="font-bold">{title}</h4>
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2 mt-2">
         {content.map((ctt, idx) => {
           const isString = typeof ctt === "string";
           return isString ? (
