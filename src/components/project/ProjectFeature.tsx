@@ -4,7 +4,7 @@ import { cn } from "@/utils/cn";
 
 interface ProjectFeatureProps {
   title: string;
-  images: string[];
+  images?: string[];
   content: string[];
 }
 
@@ -12,7 +12,7 @@ const ProjectFeature = ({ title, images, content }: ProjectFeatureProps) => {
   return (
     <div>
       <h3 className="text-base xs:text-lg font-bold">{title}</h3>
-      <ProjectImageSwiper images={images} />
+      {images && <ProjectImageSwiper images={images} />}
       <ul className="flex flex-col gap-2 mt-2">
         {content.map((dsct, index) => (
           <li
