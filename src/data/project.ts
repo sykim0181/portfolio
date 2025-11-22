@@ -9,25 +9,25 @@ export const PROJECT_DATA: {
   {
     id: 9,
     name: "BIZKET",
-    imgSrc: "/projects/bizket.png",
+    imgSrc: "/projects/bizket.webp",
     type: "TEAM",
   },
   {
     id: 8,
     name: "Retro-Board",
-    imgSrc: "/projects/retro-board.png",
+    imgSrc: "/projects/retroboard.webp",
     type: "PERSONAL",
   },
   {
     id: 7,
     name: "포트폴리오",
-    imgSrc: "/projects/my-portfolio.png",
+    imgSrc: "/projects/portfolio.webp",
     type: "PERSONAL",
   },
   {
     id: 5,
     name: "GAIA Office 선 도형 기능 고도화",
-    imgSrc: "/projects/advancing-connector.gif",
+    imgSrc: "/projects/connector.webp",
     type: "WORK",
   },
   // {
@@ -39,7 +39,7 @@ export const PROJECT_DATA: {
   {
     id: 1,
     name: "music-archiving",
-    imgSrc: "/projects/music-archiving.gif",
+    imgSrc: "/projects/music-archiving.webp",
     type: "PERSONAL",
   },
   {
