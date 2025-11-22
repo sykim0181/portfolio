@@ -1,0 +1,55 @@
+import { Description, Issue } from "@/types/common";
+import { cn } from "@/utils/cn";
+import MarkDownContainer from "../common/MarkDownContainer";
+import DescriptionParagraph from "../common/DescriptionParagraph";
+
+interface ProjectIssueProps {
+  issue: Issue;
+}
+
+const ProjectIssue = ({ issue }: ProjectIssueProps) => {
+  return (
+    <div>
+      <h3 className="text-base xs:text-lg font-bold">{issue.title}</h3>
+      <div className="flex flex-col gap-4 mt-4">
+        <Part title="문제" content={issue.problem} />
+        <Part title="접근" content={issue.approach} />
+        <Part title="해결" content={issue.solution} />
+        <Part title="성과" content={issue.accomplishment} />
+      </div>
+    </div>
+  );
+};
+
+interface PartProps {
+  title: string;
+  content: string[] | Description[];
+}
+
+const Part = ({ title, content }: PartProps) => {
+  return (
+    <div>
+      <h4 className="font-bold">{title}</h4>
+      <ul className="flex flex-col gap-2">
+        {content.map((ctt, idx) => {
+          const isString = typeof ctt === "string";
+          return isString ? (
+            <li
+              key={`content-${idx}`}
+              className={cn([
+                "flex gap-4 relative",
+                "before:w-1 before:h-1 before:bg-black before:rounded-full before:relative before:top-[.625rem] before:shrink-0",
+              ])}
+            >
+              <MarkDownContainer text={ctt} />
+            </li>
+          ) : (
+            <DescriptionParagraph key={`content-${idx}`} description={ctt} />
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
+
+export default ProjectIssue;

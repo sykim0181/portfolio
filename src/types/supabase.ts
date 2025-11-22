@@ -50,6 +50,7 @@ export type Database = {
           github: string | null
           id: number
           images: string[]
+          issue: Json[] | null
           name: string
           period_end: string | null
           period_start: string
@@ -69,6 +70,7 @@ export type Database = {
           github?: string | null
           id?: number
           images?: string[]
+          issue?: Json[] | null
           name: string
           period_end?: string | null
           period_start: string
@@ -88,6 +90,7 @@ export type Database = {
           github?: string | null
           id?: number
           images?: string[]
+          issue?: Json[] | null
           name?: string
           period_end?: string | null
           period_start?: string

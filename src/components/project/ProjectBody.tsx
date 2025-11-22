@@ -1,9 +1,10 @@
-import { Description, Feature, Project } from "@/types/common";
+import { Description, Feature, Issue, Project } from "@/types/common";
 import DescriptionParagraph from "../common/DescriptionParagraph";
 import { convertPeriodToString } from "@/utils/convertPeriodToString";
 import MarkDownContainer from "../common/MarkDownContainer";
 import ProjectImageSwiper from "./ProjectImageSwiper";
 import ProjectFeature from "./ProjectFeature";
+import ProjectIssue from "./ProjectIssue";
 
 interface ProjectBodyProps {
   project: Project;
@@ -79,6 +80,17 @@ const ProjectBody = (props: ProjectBodyProps) => {
           ))}
         </div>
       </div>
+
+      {project.issue && (
+        <div className="flex flex-col gap-4">
+          <h2 className="text-lg xs:text-xl md:text-2xl font-bold">📌 이슈</h2>
+          <div className="flex flex-col gap-4">
+            {project.issue.map((iss, idx) => (
+              <ProjectIssue key={`issue-${idx}`} issue={iss as Issue} />
+            ))}
+          </div>
+        </div>
+      )}
 
       {project.trouble_shooting && (
         <div className="flex flex-col gap-[1rem]">
