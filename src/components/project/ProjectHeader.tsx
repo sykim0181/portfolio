@@ -31,17 +31,17 @@ const ProjectHeader = (props: ProjectHeaderProps) => {
         {project.name}
       </div>
       <div className="flex gap-[1rem]">
-        {project?.github && (
+        {project.github && (
           <Button href={project.github}>
             <IoLogoGithub />
           </Button>
         )}
-        {project?.video_url && (
+        {project.video_url && (
           <Button href={project.video_url}>
             <IoVideocam />
           </Button>
         )}
-        {project?.deployment && (
+        {project.deployment && (
           <Button href={project.deployment}>
             <IoOpenOutline />
           </Button>

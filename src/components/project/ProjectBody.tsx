@@ -52,17 +52,14 @@ const ProjectBody = (props: ProjectBodyProps) => {
             🧩 구현 기능
           </h2>
           <div className="flex flex-col gap-4">
-            {project.feature.map((feat, idx) => {
-              const ft = feat as Feature;
-              return (
-                <ProjectFeature
-                  key={`feature-${idx + 1}`}
-                  title={`${idx + 1}. ${ft.title}`}
-                  images={ft.images}
-                  content={ft.content}
-                />
-              );
-            })}
+            {project.feature.map((feat, idx) => (
+              <ProjectFeature
+                key={`feature-${idx + 1}`}
+                title={`${idx + 1}. ${feat.title}`}
+                images={feat.images}
+                content={feat.content}
+              />
+            ))}
           </div>
         </div>
       )}
@@ -72,7 +69,7 @@ const ProjectBody = (props: ProjectBodyProps) => {
           <h2 className="text-lg xs:text-xl md:text-2xl font-bold">📌 이슈</h2>
           <div className="flex flex-col gap-4">
             {project.issue.map((iss, idx) => (
-              <ProjectIssue key={`issue-${idx}`} issue={iss as Issue} />
+              <ProjectIssue key={`issue-${idx}`} issue={iss} />
             ))}
           </div>
         </div>
@@ -85,10 +82,7 @@ const ProjectBody = (props: ProjectBodyProps) => {
           </h2>
           <div className="flex flex-col gap-[1rem]">
             {project.etc.map((des, idx) => (
-              <DescriptionParagraph
-                key={`etc-${idx})`}
-                description={des as Description}
-              />
+              <DescriptionParagraph key={`etc-${idx})`} description={des} />
             ))}
           </div>
         </div>
