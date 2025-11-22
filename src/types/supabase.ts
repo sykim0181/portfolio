@@ -44,7 +44,6 @@ export type Database = {
           additional_short_description: string | null
           created_at: string
           deployment: string | null
-          detail_description: Json[]
           etc: Json[] | null
           feature: Json[] | null
           github: string | null
@@ -56,7 +55,6 @@ export type Database = {
           period_start: string
           short_description: string
           skills: string[]
-          trouble_shooting: Json[] | null
           video_url: string | null
           what_i_learn: string[] | null
         }
@@ -64,7 +62,6 @@ export type Database = {
           additional_short_description?: string | null
           created_at?: string
           deployment?: string | null
-          detail_description: Json[]
           etc?: Json[] | null
           feature?: Json[] | null
           github?: string | null
@@ -76,7 +73,6 @@ export type Database = {
           period_start: string
           short_description: string
           skills: string[]
-          trouble_shooting?: Json[] | null
           video_url?: string | null
           what_i_learn?: string[] | null
         }
@@ -84,7 +80,6 @@ export type Database = {
           additional_short_description?: string | null
           created_at?: string
           deployment?: string | null
-          detail_description?: Json[]
           etc?: Json[] | null
           feature?: Json[] | null
           github?: string | null
@@ -96,7 +91,6 @@ export type Database = {
           period_start?: string
           short_description?: string
           skills?: string[]
-          trouble_shooting?: Json[] | null
           video_url?: string | null
           what_i_learn?: string[] | null
         }
