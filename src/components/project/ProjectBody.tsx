@@ -67,42 +67,12 @@ const ProjectBody = (props: ProjectBodyProps) => {
         </div>
       )}
 
-      <div className="flex flex-col gap-[1rem]">
-        <h2 className="text-lg xs:text-xl md:text-2xl font-bold">
-          🧩 상세 설명
-        </h2>
-        <div className="flex flex-col gap-[1rem]">
-          {project.detail_description.map((des, idx) => (
-            <DescriptionParagraph
-              key={`detail_description(${idx})`}
-              description={des as Description}
-            />
-          ))}
-        </div>
-      </div>
-
       {project.issue && (
         <div className="flex flex-col gap-4">
           <h2 className="text-lg xs:text-xl md:text-2xl font-bold">📌 이슈</h2>
           <div className="flex flex-col gap-4">
             {project.issue.map((iss, idx) => (
               <ProjectIssue key={`issue-${idx}`} issue={iss as Issue} />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {project.trouble_shooting && (
-        <div className="flex flex-col gap-[1rem]">
-          <h2 className="text-lg xs:text-xl md:text-2xl font-bold">
-            🛠️ 트러블 슈팅
-          </h2>
-          <div className="flex flex-col gap-[1rem]">
-            {project.trouble_shooting.map((des, idx) => (
-              <DescriptionParagraph
-                key={`trouble_shooting(${idx})`}
-                description={des as Description}
-              />
             ))}
           </div>
         </div>
