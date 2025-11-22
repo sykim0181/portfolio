@@ -16,3 +16,9 @@ export type Description = {
   title: string;
   content?: string[];
 };
+
+export type Feature = {
+  title: string;
+  content: string[];
+  images: string[];
+}
