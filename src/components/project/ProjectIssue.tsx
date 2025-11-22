@@ -1,24 +1,39 @@
+"use client";
+
 import { Description, Issue } from "@/types/common";
 import { cn } from "@/utils/cn";
 import MarkDownContainer from "../common/MarkDownContainer";
 import DescriptionParagraph from "../common/DescriptionParagraph";
+import { useState } from "react";
 
 interface ProjectIssueProps {
   issue: Issue;
 }
 
 const ProjectIssue = ({ issue }: ProjectIssueProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div>
-      <h3 className="text-base xs:text-lg font-bold">{issue.title}</h3>
-      <div className="flex flex-col gap-4 mt-4">
-        {issue.problem && <Part title="문제" content={issue.problem} />}
-        {issue.approach && <Part title="접근" content={issue.approach} />}
-        {issue.solution && <Part title="해결" content={issue.solution} />}
-        {issue.accomplishment && (
-          <Part title="성과" content={issue.accomplishment} />
+      <h3
+        className={cn(
+          "text-base xs:text-lg font-bold underline opacity-50 hover:opacity-100 cursor-pointer block w-fit",
+          isOpen && "opacity-100"
         )}
-      </div>
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        {issue.title}
+      </h3>
+      {isOpen && (
+        <div className="flex flex-col gap-4 mt-4">
+          {issue.problem && <Part title="문제" content={issue.problem} />}
+          {issue.approach && <Part title="접근" content={issue.approach} />}
+          {issue.solution && <Part title="해결" content={issue.solution} />}
+          {issue.accomplishment && (
+            <Part title="성과" content={issue.accomplishment} />
+          )}
+        </div>
+      )}
     </div>
   );
 };
