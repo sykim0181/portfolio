@@ -32,7 +32,7 @@ const ContactSection = () => {
     "relative after:block after:absolute after:h-[1px] after:w-[0] after:transition-[width] after:duration-500 hover:after:w-full hover:after:bg-black";
 
   return (
-    <section className="relative w-full h-[200dvh] z-1">
+    <div className="relative w-full h-[200dvh] z-1">
       <div className="w-full h-dvh absolute bottom-0">
         <div className="w-(--default-width) max-w-(--max-width) h-full grid grid-row-3 mx-auto">
           <div
@@ -63,7 +63,7 @@ const ContactSection = () => {
         </div>
       </div>
       <div className="w-full h-[200dvh] bg-linear-to-b from-white to-(--secondary-color) opacity-50 pointer-events-none"></div>
-    </section>
+    </div>
   );
 };
 

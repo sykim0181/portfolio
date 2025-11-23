@@ -18,7 +18,7 @@ const AboutSection = () => {
   const appearMotionProps = getAppearMotionProps();
 
   return (
-    <section className="relative w-full z-1">
+    <div className="relative w-full z-1">
       <div className="w-(--default-width) max-w-(--max-width) min-h-dvh mx-auto flex flex-col gap-12 py-12">
         <motion.h1
           className={`text-5xl font-bold text-center ${partialSans.className}`}
@@ -72,7 +72,7 @@ const AboutSection = () => {
           <ProfileModal onCloseModal={() => setShowProfileModal(false)} />
         )}
       </div>
-    </section>
+    </div>
   );
 };
 
