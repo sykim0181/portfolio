@@ -33,7 +33,7 @@ const ContactSection = () => {
 
   return (
     <section className="relative w-full h-[200dvh] z-1">
-      <div id="contact" className="w-full h-dvh absolute bottom-0">
+      <div className="w-full h-dvh absolute bottom-0">
         <div className="w-(--default-width) max-w-(--max-width) h-full grid grid-row-3 mx-auto">
           <div
             className={`row-start-2 row-end-3 flex justify-center items-center ${partialSans.className} text-[min(10vw,8rem)] text-center]`}
