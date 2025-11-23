@@ -2,11 +2,11 @@ import localFont from "next/font/local";
 import { Montserrat } from "next/font/google";
 
 export const pretendard = localFont({
-  src: "./Pretendard-Regular.ttf",
+  src: "../public/fonts/Pretendard-Regular.ttf",
 });
 
 export const sbAggroB = localFont({
-  src: "./SB-Aggro-B.ttf",
+  src: "../public/fonts/SB-Aggro-B.ttf",
 });
 
 export const montserrat = Montserrat({
@@ -14,5 +14,5 @@ export const montserrat = Montserrat({
 });
 
 export const partialSans = localFont({
-  src: "./PartialSansKR-Regular.otf",
+  src: "../public/fonts/PartialSansKR-Regular.otf",
 });

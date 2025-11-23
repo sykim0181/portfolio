@@ -1,6 +1,6 @@
 "use client";
 
-import { partialSans } from "@/fonts/fonts";
+import { partialSans } from "../../fonts";
 import { motion } from "motion/react";
 
 interface ContactSectionProps {
@@ -38,7 +38,9 @@ const ContactSection = ({ ref }: ContactSectionProps) => {
     <section ref={ref} className="relative w-full h-[200dvh] z-1">
       <div id="contact" className="w-full h-dvh absolute bottom-0">
         <div className="w-(--default-width) max-w-(--max-width) h-full grid grid-row-3 mx-auto">
-          <div className={`row-start-2 row-end-3 flex justify-center items-center ${partialSans.className} text-[min(10vw,8rem)] text-center]`}>
+          <div
+            className={`row-start-2 row-end-3 flex justify-center items-center ${partialSans.className} text-[min(10vw,8rem)] text-center]`}
+          >
             {Message}
           </div>
           <div className="row-start-3 row-end-4 flex flex-col gap-[0.5rem] justify-start items-center">

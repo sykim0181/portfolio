@@ -4,7 +4,7 @@ import ProjectItem from "./ProjectItem";
 import React, { useMemo, useState } from "react";
 import { cn } from "@/utils/cn";
 import { getAppearMotionProps } from "@/utils/motionProps";
-import { partialSans } from "@/fonts/fonts";
+import { partialSans } from "../../fonts";
 
 interface ProjectSectionProps {
   ref: React.RefObject<HTMLDivElement | null>;

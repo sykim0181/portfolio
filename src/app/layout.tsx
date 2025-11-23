@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { pretendard } from "@/fonts/fonts";
+import { pretendard } from "../fonts";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Analytics } from "@vercel/analytics/next";

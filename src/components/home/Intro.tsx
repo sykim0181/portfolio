@@ -9,7 +9,7 @@ import {
   useAnimate,
   useMotionTemplate,
 } from "motion/react";
-import { sbAggroB } from "@/fonts/fonts";
+import { sbAggroB } from "../../fonts";
 import EmojiFace from "./EmojiFace";
 
 const Intro = () => {

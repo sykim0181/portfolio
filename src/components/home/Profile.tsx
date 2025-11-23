@@ -10,7 +10,7 @@ import {
 import { IconType } from "react-icons";
 import { getAppearMotionProps } from "@/utils/motionProps";
 import { Transition } from "motion";
-import { partialSans } from "@/fonts/fonts";
+import { partialSans } from "../../fonts";
 
 const Profile = () => {
   const [showProfileModal, setShowProfileModal] = useState(false);

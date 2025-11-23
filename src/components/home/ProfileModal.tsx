@@ -10,7 +10,7 @@ import { SKILL_DATA } from "@/data/skill";
 import SkillItem from "./SkillItem";
 import Image from "next/image";
 import { IoClose } from "react-icons/io5";
-import { montserrat } from "@/fonts/fonts";
+import { montserrat } from "../../fonts";
 
 interface ProfileModalProps {
   onCloseModal: () => void;
