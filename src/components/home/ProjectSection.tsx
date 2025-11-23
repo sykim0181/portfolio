@@ -1,19 +1,15 @@
 import { motion } from "motion/react";
 import { PROJECT_DATA } from "@/data/project";
 import ProjectItem from "./ProjectItem";
-import React, { useMemo, useState } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { cn } from "@/utils/cn";
 import { getAppearMotionProps } from "@/utils/motionProps";
 import { partialSans } from "../../fonts";
 
-interface ProjectSectionProps {
-  ref: React.RefObject<HTMLDivElement | null>;
-}
-
 const projectTypes = ["All", "Personal", "Team", "Work"] as const;
 type ProjectType = (typeof projectTypes)[number];
 
-const ProjectSection = ({ ref }: ProjectSectionProps) => {
+const ProjectSection = () => {
   const [selectedType, setSelectedType] = useState<ProjectType>("All");
 
   const projectData = useMemo(() => {
@@ -28,11 +24,7 @@ const ProjectSection = ({ ref }: ProjectSectionProps) => {
   const onClickNav = (type: ProjectType) => setSelectedType(type);
 
   return (
-    <section
-      id="projects"
-      ref={ref}
-      className="relative w-full box-border py-12 z-1 flex flex-col gap-12"
-    >
+    <section className="relative w-full box-border py-12 z-1 flex flex-col gap-12">
       <motion.h2
         className={`text-5xl font-bold text-center ${partialSans.className}`}
         {...getAppearMotionProps()}
@@ -94,4 +86,4 @@ const ProjectNav = (props: ProjectNavProps) => {
   );
 };
 
-export default ProjectSection;
+export default memo(ProjectSection);

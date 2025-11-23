@@ -1,19 +1,12 @@
+import { memo } from "react";
 import Profile from "./Profile";
 
-interface AboutSectionProps {
-  ref: React.RefObject<HTMLDivElement | null>;
-}
-
-const AboutSection = ({ ref }: AboutSectionProps) => {
+const AboutSection = () => {
   return (
-    <section
-      id="about"
-      ref={ref}
-      className="relative w-full z-1"
-    >
+    <section className="relative w-full z-1">
       <Profile />
     </section>
   );
 };
 
-export default AboutSection;
+export default memo(AboutSection);

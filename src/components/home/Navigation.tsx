@@ -1,17 +1,17 @@
 import { cn } from "@/utils/cn";
-import { useAnimate, useInView } from "motion/react";
+import { useAnimate } from "motion/react";
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
-import React, { memo, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useLayoutEffect, useRef, useState } from "react";
 
 type TSection = {
   name: string;
   id: string;
-  ref: React.RefObject<HTMLDivElement | null>;
 };
 
 interface NavigationProps {
   sections: TSection[];
+  activeSectionId: string | null;
 }
 
 const montserrat_italic = Montserrat({
@@ -20,18 +20,8 @@ const montserrat_italic = Montserrat({
   weight: "700",
 });
 
-const Navigation = (props: NavigationProps) => {
-  const { sections } = props;
-
-  const sectionsInView = sections.map(({ ref }) =>
-    useInView(ref, { amount: "some" })
-  );
-  const activeSectionIdx = useMemo(
-    () => sectionsInView.findLastIndex((value) => value),
-    [sectionsInView]
-  );
-
-  const navRefs = sections.map(() => useRef<HTMLLIElement | null>(null));
+const Navigation = ({ sections, activeSectionId }: NavigationProps) => {
+  const navRefs = useRef<Record<string, HTMLLIElement>>({});
 
   const [isOpen, setIsOpen] = useState(false);
   const [scope, animate] = useAnimate();
@@ -40,29 +30,34 @@ const Navigation = (props: NavigationProps) => {
     if (isOpen) {
       animate(scope.current, { y: 0 });
     } else {
-      const activeNav = navRefs[activeSectionIdx];
-      const activeNavOffset = activeNav?.current?.offsetTop ?? 0;
+      if (activeSectionId === null) {
+        return;
+      }
+      const activeNav = navRefs.current[activeSectionId];
+      const activeNavOffset = activeNav?.offsetTop ?? 0;
       animate(scope.current, { y: -activeNavOffset });
     }
-  }, [activeSectionIdx, isOpen, navRefs]);
+  }, [activeSectionId, isOpen, navRefs]);
 
   return (
     <nav className={`fixed top-[5rem] right-[5%] z-50`}>
       <ul ref={scope} className="flex flex-col items-end">
         {sections.map(({ name, id }, idx) => {
-          const isInView = idx === activeSectionIdx;
+          const isInView = id === activeSectionId;
           const show = isInView ? true : isOpen ? true : false;
 
           return (
             <li
-              ref={navRefs[idx]}
+              ref={(node: HTMLLIElement) => {
+                navRefs.current[id] = node;
+              }}
               className={cn([
                 "relative flex gap-[1rem] items-center py-[0.25rem] hover:before:w-1 hover:before:h-1 hover:before:bg-(--primary-color)",
                 show
                   ? "visible pointer-events-auto"
                   : "invisible pointer-events-none",
               ])}
-              key={`nav-${id}`}
+              key={id}
               onMouseOver={() => setIsOpen(true)}
               onMouseOut={() => setIsOpen(false)}
             >

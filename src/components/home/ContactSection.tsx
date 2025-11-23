@@ -1,13 +1,10 @@
 "use client";
 
+import { memo } from "react";
 import { partialSans } from "../../fonts";
 import { motion } from "motion/react";
 
-interface ContactSectionProps {
-  ref: React.RefObject<HTMLDivElement | null>;
-}
-
-const ContactSection = ({ ref }: ContactSectionProps) => {
+const ContactSection = () => {
   const Message = Array.from("Thank You").map((char, index) => (
     <motion.span
       key={`message-${index}`}
@@ -35,7 +32,7 @@ const ContactSection = ({ ref }: ContactSectionProps) => {
     "relative after:block after:absolute after:h-[1px] after:w-[0] after:transition-[width] after:duration-500 hover:after:w-full hover:after:bg-black";
 
   return (
-    <section ref={ref} className="relative w-full h-[200dvh] z-1">
+    <section className="relative w-full h-[200dvh] z-1">
       <div id="contact" className="w-full h-dvh absolute bottom-0">
         <div className="w-(--default-width) max-w-(--max-width) h-full grid grid-row-3 mx-auto">
           <div
@@ -70,4 +67,4 @@ const ContactSection = ({ ref }: ContactSectionProps) => {
   );
 };
 
-export default ContactSection;
+export default memo(ContactSection);
