@@ -69,7 +69,9 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
           radius,
           {
             render: {
-              fillStyle: ballColor,
+              strokeStyle: ballColor,
+              lineWidth: 4,
+              fillStyle: "transparent",
             },
             restitution: 0.5,
           }
