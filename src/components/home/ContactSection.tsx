@@ -26,7 +26,7 @@ const ContactSection = () => {
         <br />
         You
       </p>
-      <div className="absolute left-8 bottom-8 flex flex-col gap-4 text-[#6C6C5A]">
+      <div className="absolute left-8 bottom-12 flex flex-col gap-4 text-[#6C6C5A]">
         <a
           href="https://github.com/sykim0181"
           target="_blank"
