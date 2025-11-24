@@ -24,7 +24,7 @@ const ProjectSection = () => {
   const onClickNav = (type: ProjectType) => setSelectedType(type);
 
   return (
-    <div className="relative w-full box-border py-12 md:py-24 z-1 flex flex-col gap-12">
+    <div className="relative w-full box-border py-12 sm:py-24 z-1 flex flex-col gap-12">
       <motion.h2
         className={`text-5xl font-bold text-center ${partialSans.className}`}
         {...getAppearMotionProps()}
