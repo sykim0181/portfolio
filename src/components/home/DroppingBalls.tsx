@@ -73,7 +73,7 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
               lineWidth: 4,
               fillStyle: "transparent",
             },
-            restitution: 0.5,
+            restitution: 1,
           }
         );
         elements.push(element);
