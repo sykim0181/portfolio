@@ -43,7 +43,7 @@ const IntroContent = ({
   const isHidden = useRef(false);
 
   useMotionValueEvent(scrollYProgress, "change", (value) => {
-    if (value >= 0.75 && !isHidden.current) {
+    if (value >= 0.9 && !isHidden.current) {
       animate(scope.current, { opacity: 0 });
       isHidden.current = true;
     } else if (value < 0.75 && isHidden.current) {
