@@ -137,6 +137,12 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
       },
     });
     World.add(engine.world, [mouseConstraint]);
+    // 스크롤이 가능하도록 wheel 이벤트 핸들러 제거
+    const mouseWithSource = mouse as any;
+    mouseConstraint.mouse.element.removeEventListener(
+      "wheel",
+      mouseWithSource.mousewheel
+    );
 
     const runner = Runner.create();
     Runner.run(runner, engine);
@@ -154,11 +160,7 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
 
   return (
     <div ref={containerRef} className="w-full h-full">
-      <canvas
-        ref={canvasRef}
-        className="bg-pink w-full h-full"
-        // style={{ backgroundColor: "pink" }}
-      />
+      <canvas ref={canvasRef} className="w-full h-full" />
     </div>
   );
 };
