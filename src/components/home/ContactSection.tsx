@@ -3,13 +3,21 @@
 import { memo } from "react";
 import DroppingBalls from "./DroppingBalls";
 import { partialSans } from "@/fonts";
+import { useSetAtom } from "jotai";
+import { cursorTypeAtom } from "@/atoms/cursorAtom";
 
 const ContactSection = () => {
+  const setCursorType = useSetAtom(cursorTypeAtom);
+
   const socialLinkStyle =
     "relative w-fit after:block after:absolute after:h-[1px] after:w-[0] after:transition-[width] after:duration-500 hover:after:w-full hover:after:bg-black";
 
   return (
-    <div className="relative w-full h-[100dvh] z-1">
+    <div
+      className="relative w-full h-[100dvh] z-1"
+      onMouseEnter={() => setCursorType("none")}
+      onMouseLeave={() => setCursorType("default")}
+    >
       <DroppingBalls backgroundColor="#DEE5ED" ballColor="#FFFBF0" />
       <p
         className={`absolute top-8 left-8 ${partialSans.className} text-[min(10vw,8rem)] text-[#6C6C5A] w-fit pointer-events-none`}
