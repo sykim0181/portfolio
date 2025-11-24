@@ -45,7 +45,7 @@ const ProjectSection = () => {
           ))}
         </div>
 
-        <div className="grid gap-[min(10vw,3rem)] w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid gap-4 xs:gap-8 sm:gap-12 grid-cols-2 md:grid-cols-3">
           {projectData.map((project) => (
             <ProjectItem
               key={project.name}

@@ -42,7 +42,7 @@ const ProjectItem = (props: Props) => {
 
   return (
     <motion.div
-      className="w-full aspect-square rounded-[10px] overflow-hidden cursor-pointer shadow-[0px_10px_20px_#9e9e9e]"
+      className="w-[min(100%,200px)] aspect-square rounded-[10px] overflow-hidden cursor-pointer shadow-[0px_10px_20px_#9e9e9e]"
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       initial="offscreen"
