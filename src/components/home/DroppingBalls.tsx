@@ -56,9 +56,8 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
 
         const element = Bodies.circle(x, y, radius, {
           render: {
-            strokeStyle: ballColor,
-            lineWidth: 4,
-            fillStyle: "transparent",
+            fillStyle: ballColor,
+            opacity: 0.3,
           },
           restitution: 0.9,
           frictionAir: 0.02,
