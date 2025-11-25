@@ -18,7 +18,7 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
 
     const engine = Engine.create();
     // 중력 세기 설정
-    engine.gravity.y = 0.05;
+    engine.gravity.y = 0;
 
     const render = Render.create({
       element: container ?? undefined,
@@ -48,26 +48,32 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
 
     function getBalls(width: number, height: number, n: number) {
       const radius = computeRadius(width, height, n);
-      const elements: Matter.Body[] = [];
+      const balls: Matter.Body[] = [];
 
       for (let i = 0; i < n; i++) {
         const x = radius + Math.random() * (width - radius * 2);
         const y = radius + Math.random() * (height - radius * 2);
 
-        const element = Bodies.circle(x, y, radius, {
+        const ball = Bodies.circle(x, y, radius, {
           render: {
             fillStyle: ballColor,
             opacity: 0.3,
           },
-          restitution: 0.9,
-          frictionAir: 0.02,
+          restitution: 1,
+          frictionAir: 0,
           friction: 0,
           frictionStatic: 0,
-          density: 1,
+          density: 0.08,
         });
-        elements.push(element);
+
+        Body.setVelocity(ball, {
+          x: (Math.random() - 0.5) * 3,
+          y: (Math.random() - 0.5) * 3,
+        });
+
+        balls.push(ball);
       }
-      return elements;
+      return balls;
     }
 
     const n = 8;
