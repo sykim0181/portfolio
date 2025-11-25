@@ -48,29 +48,24 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
 
     function getBalls(width: number, height: number, n: number) {
       const radius = computeRadius(width, height, n);
-      const cols = Math.floor(width / (2 * radius));
       const elements: Matter.Body[] = [];
-      for (let i = 0; i < n; i++) {
-        const col = i % cols;
-        const row = Math.floor(i / cols);
 
-        const element = Bodies.circle(
-          radius + col * 2 * radius,
-          radius + row * 2 * radius,
-          radius,
-          {
-            render: {
-              strokeStyle: ballColor,
-              lineWidth: 4,
-              fillStyle: "transparent",
-            },
-            restitution: 0.9,
-            frictionAir: 0.02,
-            friction: 0,
-            frictionStatic: 0,
-            density: 1,
-          }
-        );
+      for (let i = 0; i < n; i++) {
+        const x = radius + Math.random() * (width - radius * 2);
+        const y = radius + Math.random() * (height - radius * 2);
+
+        const element = Bodies.circle(x, y, radius, {
+          render: {
+            strokeStyle: ballColor,
+            lineWidth: 4,
+            fillStyle: "transparent",
+          },
+          restitution: 0.9,
+          frictionAir: 0.02,
+          friction: 0,
+          frictionStatic: 0,
+          density: 1,
+        });
         elements.push(element);
       }
       return elements;
