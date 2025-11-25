@@ -10,7 +10,7 @@ const ContactSection = () => {
   const setCursorType = useSetAtom(cursorTypeAtom);
 
   const socialLinkStyle =
-    "relative w-fit after:block after:absolute after:h-[1px] after:w-[0] after:transition-[width] after:duration-500 hover:after:w-full hover:after:bg-black";
+    "relative w-fit after:block after:absolute after:h-[1px] after:w-[0] after:transition-[width] after:duration-500 hover:after:w-full hover:after:bg-[#6C6C5A]";
 
   return (
     <div
