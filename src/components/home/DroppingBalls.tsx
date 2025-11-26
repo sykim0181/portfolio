@@ -5,6 +5,8 @@ import {
   Composite,
   Engine,
   Events,
+  Mouse,
+  MouseConstraint,
   Render,
   Runner,
 } from "matter-js";
@@ -169,27 +171,26 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
     window.addEventListener("resize", handleResize);
 
     // 마우스 조작 설정
-    // const mouse = Mouse.create(render.canvas);
-    // const mouseConstraint = MouseConstraint.create(engine, {
-    //   mouse,
-    //   constraint: {
-    //     stiffness: 0.2,
-    //     render: {
-    //       visible: false,
-    //     },
-    //   },
-    // });
-    // // World.add(engine.world, [mouseConstraint]);
-    // // 스크롤이 가능하도록 wheel 이벤트 핸들러 제거
-    // const mouseWithSource = mouse as any;
-    // mouseConstraint.mouse.element.removeEventListener(
-    //   "wheel",
-    //   mouseWithSource.mousewheel
-    // );
+    const mouse = Mouse.create(render.canvas);
+    const mouseConstraint = MouseConstraint.create(engine, {
+      mouse,
+      constraint: {
+        stiffness: 0.2,
+        render: {
+          visible: false,
+        },
+      },
+    });
+    Composite.add(engine.world, [mouseConstraint]);
+    // 스크롤이 가능하도록 wheel 이벤트 핸들러 제거
+    const mouseWithSource = mouse as any;
+    mouseConstraint.mouse.element.removeEventListener(
+      "wheel",
+      mouseWithSource.mousewheel
+    );
 
     const runner = Runner.create();
     Runner.run(runner, engine);
-
     Render.run(render);
 
     return () => {
