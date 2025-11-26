@@ -20,18 +20,21 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
 
   useEffect(() => {
     const container = containerRef.current;
-    const rect = container?.getBoundingClientRect();
-    const width = rect?.width ?? 0;
-    const height = rect?.height ?? 0;
+    const canvas = canvasRef.current;
+    if (!container || !canvas) return;
+
+    const rect = container.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
 
     const engine = Engine.create();
     // 중력 세기 설정
     engine.gravity.y = 0;
 
     const render = Render.create({
-      element: container ?? undefined,
+      element: container,
       engine,
-      canvas: canvasRef.current ?? undefined,
+      canvas,
       bounds: {
         min: { x: 0, y: 0 },
         max: { x: width, y: height },
@@ -116,14 +119,12 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
     const mousePos = { x: width / 2, y: height / 2 };
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!canvasRef.current) return;
-
-      const canvasRect = canvasRef.current.getBoundingClientRect();
+      const canvasRect = canvas.getBoundingClientRect();
       mousePos.x = e.clientX - canvasRect.left;
       mousePos.y = e.clientY - canvasRect.top;
     };
 
-    canvasRef.current?.addEventListener("mousemove", handleMouseMove);
+    canvas.addEventListener("mousemove", handleMouseMove);
 
     const repelHandler = () => {
       const repelRadius = 200;
@@ -151,9 +152,9 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
 
     // 윈도우 리사이즈 시 바뀐 윈도우 크기에 맞춰 공, 벽 다시 만들기
     const handleResize = () => {
-      const rect = container?.getBoundingClientRect();
-      const newWidth = rect?.width ?? 0;
-      const newHeight = rect?.height ?? 0;
+      const rect = container.getBoundingClientRect();
+      const newWidth = rect.width;
+      const newHeight = rect.height;
 
       Render.setSize(render, newWidth, newHeight);
 
@@ -193,7 +194,7 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      canvasRef.current?.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mousemove", handleMouseMove);
       Events.off(engine, "beforeUpdate", repelHandler);
       Render.stop(render);
       Runner.stop(runner);
