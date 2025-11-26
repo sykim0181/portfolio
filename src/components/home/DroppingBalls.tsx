@@ -1,5 +1,13 @@
 import { useEffect, useRef } from "react";
-import { Bodies, Body, Engine, Events, Render, Runner, World } from "matter-js";
+import {
+  Bodies,
+  Body,
+  Composite,
+  Engine,
+  Events,
+  Render,
+  Runner,
+} from "matter-js";
 
 interface DroppingBallsProps {
   ballColor: string;
@@ -78,7 +86,7 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
 
     const n = 8;
     let balls = getBalls(width, height, n);
-    World.add(engine.world, balls);
+    Composite.add(engine.world, balls);
 
     // 벽 생성
     function getWalls(width: number, height: number) {
@@ -102,7 +110,7 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
       return [topWall, leftWall, rightWall, bottomWall];
     }
     let walls = getWalls(width, height);
-    World.add(engine.world, walls);
+    Composite.add(engine.world, walls);
 
     // 마우스 위치 추적
     const mousePos = { x: width / 2, y: height / 2 };
@@ -149,12 +157,12 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
 
       Render.setSize(render, newWidth, newHeight);
 
-      World.remove(engine.world, balls);
-      World.remove(engine.world, walls);
+      Composite.remove(engine.world, balls);
+      Composite.remove(engine.world, walls);
 
       balls = getBalls(newWidth, newHeight, n);
       walls = getWalls(newWidth, newHeight);
-      World.add(engine.world, [...balls, ...walls]);
+      Composite.add(engine.world, [...balls, ...walls]);
     };
 
     window.addEventListener("resize", handleResize);
@@ -189,7 +197,7 @@ const DroppingBalls = ({ ballColor, backgroundColor }: DroppingBallsProps) => {
       Events.off(engine, "beforeUpdate", repelHandler);
       Render.stop(render);
       Runner.stop(runner);
-      World.clear(engine.world, false);
+      Composite.clear(engine.world, false);
       Engine.clear(engine);
     };
   }, [ballColor, backgroundColor]);
