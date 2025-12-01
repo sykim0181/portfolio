@@ -19,12 +19,12 @@ const ProfileModal = ({ onCloseModal }: ProfileModalProps) => {
   return (
     <Root onCloseModal={onCloseModal}>
       <motion.div
-        className="w-[calc(100%-20px)] xs:w-(--default-width) max-w-(--max-width) h-[calc(100%-20px)] overflow-y-scroll absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-100 rounded-3xl p-8"
+        className="w-[calc(100%-20px)] xs:w-(--default-width) max-w-(--max-width) h-[calc(100%-20px)] overflow-y-scroll absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-3xl p-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <div className="flex flex-col gap-4 sm:gap-6">
+        <div className={`flex flex-col gap-4 sm:gap-6 ${montserrat.className}`}>
           <ProfileSection>
             <div className="flex flex-col gap-4">
               <p>
@@ -35,14 +35,31 @@ const ProfileModal = ({ onCloseModal }: ProfileModalProps) => {
           </ProfileSection>
 
           <ProfileSection sectionName="Skill">
-            <div className="flex gap-[0.7rem] flex-wrap">
-              {SKILL_DATA.map((skill) => (
-                <SkillItem skill={skill} size={"2.2rem"} key={skill.name} />
+            <div className="flex flex-col sm:grid sm:grid-cols-2 gap-4 sm:gap-6">
+              {SKILL_DATA.map((skillGroup) => (
+                <div
+                  key={skillGroup.name}
+                  className="bg-white rounded-3xl p-4 sm:p-6 w-full"
+                >
+                  <div className="mb-2 sm:mb-4">{skillGroup.name}</div>
+                  <div className="flex flex-wrap gap-3">
+                    {skillGroup.skills.map((skill) => (
+                      <SkillItem
+                        skill={skill}
+                        size={"2.2rem"}
+                        key={skill.name}
+                      />
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </ProfileSection>
+
           <ProfileSection sectionName="Career" items={CAREER_DATA} />
+
           <ProfileSection sectionName="Education" items={EDUCATION_DATA} />
+
           <ProfileSection sectionName="Etc." items={ETC_DATA} />
         </div>
 
@@ -66,7 +83,7 @@ const ProfileSection = (props: ProfileSectionProps) => {
   return (
     <section
       key={`profile-${sectionName}`}
-      className="bg-white rounded-3xl px-4 py-4 sm:py-6 flex flex-col gap-4 sm:gap-6"
+      className="bg-gray-100 rounded-3xl px-4 py-4 sm:py-6 flex flex-col gap-4 sm:gap-6"
     >
       {sectionName && (
         <h4 className={`w-full text-lg ${montserrat.className} text-center`}>
