@@ -8,7 +8,7 @@ export const CAREER_DATA: TDataItem[] = [
   {
     period: "2024.04 - 2025.02",
     title: "(주)티맥스가이아",
-    description: ["문서 협업 플랫폼 GAIA Docs의 오피스(문서 편집 도구) 개발"],
+    description: ["실시간 협업 문서 제작 오피스 소프트웨어 개발"],
   },
 ];
 
@@ -18,16 +18,16 @@ export const EDUCATION_DATA: TDataItem[] = [
     title: "건국대학교 컴퓨터공학부",
     description: [],
   },
-  {
-    period: "2024.01 - 2024.03",
-    title: "항해99 리부트 코스 1기",
-    description: [],
-  },
-  {
-    period: "2025.07 - 2025.08",
-    title: "부스트캠프 웹·모바일 10기 챌린지",
-    description: ["웹 풀스택(JavaScript)"],
-  },
+  // {
+  //   period: "2024.01 - 2024.03",
+  //   title: "항해99 리부트 코스 1기",
+  //   description: [],
+  // },
+  // {
+  //   period: "2025.07 - 2025.08",
+  //   title: "부스트캠프 웹·모바일 10기 챌린지",
+  //   description: ["웹 풀스택(JavaScript)"],
+  // },
 ];
 
 export const ETC_DATA: TDataItem[] = [
