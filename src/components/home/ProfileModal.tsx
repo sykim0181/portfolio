@@ -8,7 +8,7 @@ import { CloseButton, Root } from "../common/Modal";
 import { motion } from "motion/react";
 import { SKILL_DATA } from "@/data/skill";
 import SkillItem from "./SkillItem";
-import Image from "next/image";
+// import Image from "next/image";
 import { IoClose } from "react-icons/io5";
 import { montserrat } from "../../fonts";
 
@@ -29,7 +29,7 @@ const ProfileModal = ({ onCloseModal }: ProfileModalProps) => {
 
         <div className="mt-12">
           <div className="flex flex-col md:flex-row gap-8">
-            <div className="relative w-fit mx-auto md:mx-0">
+            {/* <div className="relative w-fit mx-auto md:mx-0">
               <div className="w-[150px] h-[150px] rounded-full bg-(--primary-color) blur-2xl" />
               <Image
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
@@ -38,7 +38,7 @@ const ProfileModal = ({ onCloseModal }: ProfileModalProps) => {
                 width={100}
                 height={100}
               />
-            </div>
+            </div> */}
             <div className="flex flex-col gap-4">
               <p>
                 <span className="text-lg font-bold">김소연</span> / Kim Soyeon
