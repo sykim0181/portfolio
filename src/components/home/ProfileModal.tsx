@@ -8,7 +8,6 @@ import { CloseButton, Root } from "../common/Modal";
 import { motion } from "motion/react";
 import { SKILL_DATA } from "@/data/skill";
 import SkillItem from "./SkillItem";
-// import Image from "next/image";
 import { IoClose } from "react-icons/io5";
 import { montserrat } from "../../fonts";
 
@@ -20,48 +19,31 @@ const ProfileModal = ({ onCloseModal }: ProfileModalProps) => {
   return (
     <Root onCloseModal={onCloseModal}>
       <motion.div
-        className="w-[calc(100%-20px)] xs:w-(--default-width) max-w-(--max-width) h-[calc(100%-20px)] overflow-y-scroll absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-8"
+        className="w-[calc(100%-20px)] xs:w-(--default-width) max-w-(--max-width) h-[calc(100%-20px)] overflow-y-scroll absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-100 rounded-3xl p-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <h1 className={`text-3xl ${montserrat.className}`}>Profile</h1>
-
-        <div className="mt-12">
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* <div className="relative w-fit mx-auto md:mx-0">
-              <div className="w-[150px] h-[150px] rounded-full bg-(--primary-color) blur-2xl" />
-              <Image
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                src="/home/memoticon_smiling.webp"
-                alt="프로필"
-                width={100}
-                height={100}
-              />
-            </div> */}
+        <div className="flex flex-col gap-4 sm:gap-6">
+          <ProfileSection>
             <div className="flex flex-col gap-4">
               <p>
                 <span className="text-lg font-bold">김소연</span> / Kim Soyeon
               </p>
               <p>soyeon364@naver.com</p>
             </div>
-          </div>
-          <Separator />
-          <div className="flex flex-col">
-            <ProfileSection sectionName="Skill">
-              <div className="flex gap-[0.7rem] flex-wrap">
-                {SKILL_DATA.map((skill) => (
-                  <SkillItem skill={skill} size={"2.2rem"} key={skill.name} />
-                ))}
-              </div>
-            </ProfileSection>
-            <Separator />
-            <ProfileSection sectionName="Career" items={CAREER_DATA} />
-            <Separator />
-            <ProfileSection sectionName="Education" items={EDUCATION_DATA} />
-            <Separator />
-            <ProfileSection sectionName="Etc." items={ETC_DATA} />
-          </div>
+          </ProfileSection>
+
+          <ProfileSection sectionName="Skill">
+            <div className="flex gap-[0.7rem] flex-wrap">
+              {SKILL_DATA.map((skill) => (
+                <SkillItem skill={skill} size={"2.2rem"} key={skill.name} />
+              ))}
+            </div>
+          </ProfileSection>
+          <ProfileSection sectionName="Career" items={CAREER_DATA} />
+          <ProfileSection sectionName="Education" items={EDUCATION_DATA} />
+          <ProfileSection sectionName="Etc." items={ETC_DATA} />
         </div>
 
         <CloseButton className="absolute top-0 right-0 text-(--bg-color) p-4 text-xl">
@@ -73,7 +55,7 @@ const ProfileModal = ({ onCloseModal }: ProfileModalProps) => {
 };
 
 interface ProfileSectionProps {
-  sectionName: string;
+  sectionName?: string;
   items?: TDataItem[];
   children?: React.ReactNode;
 }
@@ -82,11 +64,16 @@ const ProfileSection = (props: ProfileSectionProps) => {
   const { sectionName, items, children } = props;
 
   return (
-    <section key={`profile-${sectionName}`}>
-      <h4 className={`w-full text-lg ${montserrat.className}`}>
-        {sectionName}
-      </h4>
-      <div className="mt-[1rem] flex flex-col gap-[1rem]">
+    <section
+      key={`profile-${sectionName}`}
+      className="bg-white rounded-3xl px-4 py-4 sm:py-6 flex flex-col gap-4 sm:gap-6"
+    >
+      {sectionName && (
+        <h4 className={`w-full text-lg ${montserrat.className} text-center`}>
+          {sectionName}
+        </h4>
+      )}
+      <div className="flex flex-col gap-[1rem]">
         {children}
         {items &&
           items.map((item, idx) => (
@@ -111,6 +98,6 @@ const ProfileSection = (props: ProfileSectionProps) => {
   );
 };
 
-const Separator = () => <div className="w-full h-[.5px] my-8  bg-gray-300" />;
+// const Separator = () => <div className="w-full h-[.5px] my-8  bg-gray-300" />;
 
 export default ProfileModal;
