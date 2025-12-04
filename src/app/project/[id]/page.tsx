@@ -1,3 +1,5 @@
+export const revalidate = 60 * 60;
+
 import Link from "next/link";
 import { AiFillHome } from "react-icons/ai";
 import ProjectBody from "@/components/project/ProjectBody";

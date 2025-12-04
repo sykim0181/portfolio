@@ -1,3 +1,5 @@
+export const revalidate = 60 * 60;
+
 import { Root } from "@/components/common/Modal";
 import ProjectModal from "@/components/project/ProjectModal";
 import { Suspense } from "react";
