@@ -30,7 +30,9 @@ const useCursor = () => {
   useEffect(() => {
     const root = document.getElementById("root");
 
-    const eventHandler = (e: MouseEvent) => {
+    const eventHandler = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse") return;
+      
       const { w, h } = sizeRef.current;
       positionRef.current = {
         x: e.clientX - w / 2,
