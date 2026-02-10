@@ -27,7 +27,7 @@ export const PROJECT_DATA: {
   {
     id: 5,
     name: "GAIA Office 선 도형 기능 고도화",
-    imgSrc: "/projects/connector.webp",
+    imgSrc: "/projects/gaia-office.webp",
     type: "WORK",
   },
   // {
