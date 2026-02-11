@@ -1,5 +1,6 @@
 "use client";
 
+import usePreventScroll from "@/hooks/usePreventScroll";
 import { AnimatePresence } from "motion/react";
 import { useRouter } from "next/navigation";
 import {
@@ -38,16 +39,9 @@ export const Root = (props: ModalProps) => {
 
   useEffect(() => {
     setTimeout(() => setIsOpen(true), 300);
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.offsetWidth;
-    document.body.style.setProperty("--scrollbar-width", `${scrollbarWidth}px`);
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = "auto";
-      document.body.style.removeProperty("--scrollbar-width");
-    };
   }, []);
+
+  usePreventScroll();
 
   return createPortal(
     <ModalContext.Provider value={{ closeModal }}>
@@ -59,7 +53,7 @@ export const Root = (props: ModalProps) => {
         <AnimatePresence>{isOpen && children}</AnimatePresence>
       </div>
     </ModalContext.Provider>,
-    document.getElementById("modal-root")!
+    document.getElementById("modal-root")!,
   );
 };
 
