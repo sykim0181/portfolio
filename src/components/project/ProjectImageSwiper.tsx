@@ -3,14 +3,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { useState } from "react";
-import FullScreenImage from "../common/FullScreenImage";
+import FullScreenImageSwiper from "./FullScreenImageSwiper";
 
 interface ProjectImageSwiperProps {
   images: string[];
 }
 
 const ProjectImageSwiper = ({ images }: ProjectImageSwiperProps) => {
-  const [activeIndex, setActiveIndex] = useState<number | undefined>(undefined);
+  const [showFullScreen, setShowFullScreen] = useState(false);
 
   return (
     <>
@@ -24,15 +24,15 @@ const ProjectImageSwiper = ({ images }: ProjectImageSwiperProps) => {
             <img
               src={imageSrc}
               className="w-full h-full object-contain cursor-pointer"
-              onClick={() => setActiveIndex(i)}
+              onClick={() => setShowFullScreen(true)}
             />
           </SwiperSlide>
         ))}
       </Swiper>
-      {activeIndex !== undefined && (
-        <FullScreenImage
-          src={images[activeIndex]}
-          onClick={() => setActiveIndex(undefined)}
+      {showFullScreen && (
+        <FullScreenImageSwiper
+          images={images}
+          onClick={() => setShowFullScreen(false)}
         />
       )}
     </>
