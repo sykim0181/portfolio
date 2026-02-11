@@ -63,7 +63,7 @@ const FullScreenImageSwiper = ({
             <SwiperSlide key={`full-image-slide-${idx}`}>
               <img
                 src={src}
-                className="select-none absolute top-1/2 left-1/2 -translate-1/2"
+                className="select-none absolute top-1/2 left-1/2 -translate-1/2 max-w-full max-h-full"
               />
             </SwiperSlide>
           </div>
