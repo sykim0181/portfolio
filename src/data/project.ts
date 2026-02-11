@@ -7,10 +7,10 @@ export const PROJECT_DATA: {
   type: ProjectType;
 }[] = [
   {
-    id:10,
+    id: 10,
     name: "만날우정",
     imgSrc: "/projects/mnwj.png",
-    type: "TEAM"
+    type: "TEAM",
   },
   {
     id: 9,
@@ -31,17 +31,11 @@ export const PROJECT_DATA: {
     type: "PERSONAL",
   },
   {
-    id: 5,
-    name: "GAIA Office 선 도형 기능 고도화",
+    id: 6,
+    name: "GAIA Office",
     imgSrc: "/projects/gaia-office.webp",
     type: "WORK",
   },
-  // {
-  //   id: 6,
-  //   name: "GAIA Office 기능 유지 보수",
-  //   imgSrc: "/projects/gaia-office.png",
-  //   type: "WORK",
-  // },
   {
     id: 1,
     name: "music-archiving",
