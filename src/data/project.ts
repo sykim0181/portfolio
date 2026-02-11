@@ -7,6 +7,12 @@ export const PROJECT_DATA: {
   type: ProjectType;
 }[] = [
   {
+    id:10,
+    name: "만날우정",
+    imgSrc: "/projects/mnwj.png",
+    type: "TEAM"
+  },
+  {
     id: 9,
     name: "BIZKET",
     imgSrc: "/projects/bizket.webp",
