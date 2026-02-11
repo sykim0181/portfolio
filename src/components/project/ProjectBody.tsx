@@ -34,7 +34,7 @@ const ProjectBody = (props: ProjectBodyProps) => {
         <h2 className="text-lg xs:text-xl md:text-2xl font-bold">
           💻 기술 스택
         </h2>
-        <div className="flex gap-x-[1rem] gap-y-[0.5rem] flex-wrap">
+        <div className="flex gap-x-2 gap-y-2 flex-wrap">
           {project.skills.map((skill) => (
             <div
               key={skill}
